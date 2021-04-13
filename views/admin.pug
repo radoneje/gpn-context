@@ -1,0 +1,218 @@
+doctype html
+html
+  head
+    title= "admin"
+    <meta charset="UTF-8">
+    <meta name="description" content="sber-pb conference">
+    <meta name="keywords" content="sber-pb">
+    <meta name="author" content="">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0">
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body(style="opacity:0")
+    div#app.work( v-bind:class="{visible:loaded}" )
+      .adminMenu
+        .adminMenuItems
+          .aminMenuItem(v-on:click="sect=2" v-bind:class="{active:sect==2}" v-show="chekDisable(2)") Вопросы
+          .aminMenuItem(v-on:click="sect=1" v-bind:class="{active:sect==1}" v-show="chekDisable(1)") Чат
+          .aminMenuItem(v-on:click="sect=8" v-bind:class="{active:sect==8}" v-show="chekDisable(8)") Голосования
+          .aminMenuItem(v-on:click="sect=0" v-bind:class="{active:sect==0}" v-show="chekDisable(0)") Пользователи
+          .aminMenuItem(v-on:click="sect=4" v-bind:class="{active:sect==4}" v-show="chekDisable(4)") Статистика
+          .aminMenuItem(v-on:click="sect=3" v-bind:class="{active:sect==3}" v-show="chekDisable(3)") Контент
+          .aminMenuItem(v-on:click="sect=5" v-bind:class="{active:sect==5}" v-show="chekDisable(5)") Спикеры
+          .aminMenuItem(v-on:click="sect=7" v-bind:class="{active:sect==7}" v-show="chekDisable(7)") Коды
+          .aminMenuItem(v-on:click="sect=6" v-bind:class="{active:sect==6}" v-show="chekDisable(6)") Редирект
+      .adminWr
+        .adminSect(v-if="sect==0")
+          .adminSectLoader.loaderWr(v-if="showLoader")
+              .loader
+              .loaderText идет загрузка...
+          .adminBody(v-show="!showLoader")
+            .adminSectTitle Зарегистрированных пользователей: {{users.length}}
+            table(cellspacing="0" cellpadding="0" border="0")
+              tr(v-for="(user, i) in users")
+                td
+                  .adminTd {{i+1}}
+                td
+                  .adminTd {{user.f}} {{user.i}} {{user.o}}  &nbsp;
+                td
+                  .adminTd {{user.deptTitle}}
+                td
+                  .adminTd  {{moment(user.date).format('DD.MM.YYYY HH:mm')}}
+                td
+                  .adminTd {{user.online?"online":"&nbsp;"}}
+                td
+                  .adminPrivateMessage
+                    input(placeholder='личное сообщение' v-model="user.message")
+                    input(type='button' value="показать пользователю" v-bind:class="{active:user.messageIsActive}" v-on:click="messageToUser(user)" )
+        .adminSect(v-if="sect==1" )
+          .adminSectLoader.loaderWr(v-if="showLoader")
+            .loader
+            .loaderText идет загрузка...
+          .adminBody(v-show="!showLoader")
+            .adminSectTitle Сообщаний в чате: {{chat.length}}
+            .playerChatWr
+              .playerChatPole#chatBox
+                .playerChatPoleWr
+                  .playerChatItem(v-for="item in chat" v-if="!item.isDeleted ")
+                    .playerChatTitle {{moment(item.date).format('HH:mm')}} {{item.f}} {{item.i}} {{item.o}} {{item.deptTitle}}
+                    .playerChatText {{item.text}}
+                    .playerChatAnsw
+                      textarea.playerChatAnswText(v-model="item.answer" placeholder="Напишите здесь текст ответа" v-on:change="addChatAnswer(item)")
+
+        .adminSect(v-if="sect==2")
+          .adminSectLoader.loaderWr(v-if="showLoader")
+            .loader
+            .loaderText идет загрузка...
+          .adminBody(v-show="!showLoader")
+            .adminSectTitle Вопросов: {{q.length}}
+            .adminDeleteBtn(v-on:click="visibleQ(false)" v-if="state.q") Выключить вопросы
+            div(v-else)
+              div ВОПРОСЫ ВЫКЛЮЧЕНЫ!
+              .adminDeleteBtn(v-on:click="visibleQ(true)" ) Включить вопросы
+            .playerChatWr
+              .playerChatPole#qBox(v-show="state.q")
+                .playerChatPoleWr
+                  .playerChatItem(v-for="item in q" v-bind:class="{ready:!item.isReady}")
+                    .playerChatTitle <span class="adminDop"> {{moment(item.date).format('HH:mm')}} </span> {{item.f}} {{item.i}} {{item.o}} <span class="adminDop"> {{item.deptTitle}}</span>
+                    .playerChatText {{item.text}}
+                    .playerChatDate.btnWr
+                      .adminDeleteBtn(v-on:click="approveQ(item)" style="float:left; width:150px;text-align: center;" v-if="item.isReady") Отменить
+                      .adminDeleteBtn(v-on:click="approveQ(item)" style="float:left; width:150px;text-align: center;"  v-else) Принять сообщение
+                      .adminDeleteBtn(v-on:click="spkQ(item)" v-if="item.isSpk && item.isReady" style="float:left;color:gray") Показать спикеру
+                      .adminDeleteBtn(v-on:click="spkQ(item)" style="float:left; background:red; color:white" v-if="!item.isSpk && item.isReady") Убрать от спикеры
+                      .adminDeleteBtn(v-on:click="deleteQ(item)" style="float:right") удалить
+                      div(style="clear:both")
+            .adminDeleteBtn(v-on:click="deleteAllQ()") удалить все
+        .adminSect(v-if="sect==3")
+          .adminSectLoader.loaderWr(v-if="showLoader")
+            .loader
+            .loaderText идет загрузка...
+          .adminBody(v-show="!showLoader")
+            .adminSectTitle Контент:
+              .adminSectBtn(v-on:click="saveContent()") Сохранить
+              textarea.adminJsonTextArea(v-model="descr.content")
+            .adminSectTitle Спикеры:
+              .adminSectBtn(v-on:click="saveSpeakers()") Сохранить
+              textarea.adminJsonTextArea(v-model="descr.speakers")
+            .adminSectTitle Внешний вид:
+              .adminSectBtn(v-on:click="saveSite()") Сохранить
+              textarea.adminJsonTextArea(v-model="descr.site")
+        .adminSect(v-if="sect==4" )
+          .adminSectLoader.loaderWr(v-if="showLoader")
+            .loader
+            .loaderText идет загрузка...
+          .adminBody(v-show="!showLoader")
+            .adminSectTitle Статистика
+            .adminSectTitle Сейчас на сайте: {{stat.now}}
+            .adminSectTitle Всего зашло: {{stat.loginsCount}}
+            .adminSectTitle График
+              #container( style="width: 500px; height: 400px;")
+        .adminSect(v-if="sect==5" )
+          .adminSectLoader.loaderWr(v-if="showLoader")
+            .loader
+            .loaderText идет загрузка...
+          .adminBody(v-show="!showLoader")
+            .adminSectTitle Спикеры ({{spk.length}})
+            .adminSpkItem(v-for="item in spk" v-if="!item.isDeleted")
+              .adminSpkItemWr
+                .adminSpkItemId  ID={{item.id}}
+                  .adminSpkItemName
+                    input(v-model="item.f" placeholder="фамилия")
+                    input(v-model="item.i" placeholder="имя")
+                    input(v-model="item.o" placeholder="отчество")
+                  .adminSpkItemPosition
+                    input(v-model="item.position" placeholder="должность")
+                  .adminSpkItemPosition
+                    button(v-on:click="editSpk(item)") Сохранить изменения
+                    button(v-on:click="repositionSpk(item, -15)") Выше
+                    button(v-on:click="repositionSpk(item, +15)") Ниже
+                    button(v-on:click="deleteSpk(item)" style='color:red') Удалить спикера
+                .adminSpkItemPhoto
+                    .adminSpkItemPhotoWr(:style="{ backgroundImage: `url(${item.photo?item.photo:'/images/nouser.png'})` }")
+                    button(v-on:click="editSpkPhoto(item)") Изменть фото
+            .adminSpkItem
+              .adminSpkItemWr
+                .adminSpkItemId НОВЫЙ СПИКЕР
+                  .adminSpkItemName
+                    input(v-model="newSpk.f" placeholder="фамилия")
+                    input(v-model="newSpk.i" placeholder="имя")
+                    input(v-model="newSpk.o" placeholder="отчество")
+                  .adminSpkItemPosition
+                    input(v-model="newSpk.position" placeholder="должность")
+                  .adminSpkItemPosition
+                    button(v-on:click="addSpk(newSpk)") Добавить спикера
+                .adminSpkItemPhoto
+                    .adminSpkItemPhotoWr(:style="{ backgroundImage: `url(${newSpk.photo?newSpk.photo:'/images/nouser.png'})` }")
+                    button(v-on:click="editSpkPhoto(newSpk)") Изменть фото
+        .adminSect(v-if="sect==6" )
+          .adminSectLoader.loaderWr(v-if="showLoader")
+            .loader
+            .loaderText идет загрузка...
+          .adminBody(v-show="!showLoader")
+            .adminSectTitle Редирект ({{redirect.length}})
+            .adminSpkItem(v-for="rr in redirect")
+              .adminSpkItemWr
+                .adminSpkItemId https://vcbr.ru/zoom/{{rr.id}}
+                  .adminSpkItemPosition
+                    input(v-model="rr.value" placeholder="URL редиректа")
+                  .adminSpkItemPosition
+                    button(v-on:click="editRedirect(rr)") Изменить редирект
+
+            .adminSpkItem
+              .adminSpkItemWr
+                .adminSpkItemId НОВЫЙ РЕДИРЕКТ
+                  .adminSpkItemPosition
+                    input(v-model="newRedirect.value" placeholder="URL редиректа")
+                  .adminSpkItemPosition
+                    button(v-on:click="addRedirect(newRedirect)") Добавить редирект
+        .adminSect(v-if="sect==7" )
+          .adminSectLoader.loaderWr(v-if="showLoader")
+            .loader
+            .loaderText идет загрузка...
+          .adminBody(v-show="!showLoader")
+            .adminSectTitle Коды доступа ({{codes.length}})
+            .adminSpkItem(v-for="rr in codes")
+              .adminSpkItemWr
+                .adminSpkItemId {{rr.code}} {{rr.f}} {{rr.i}} {{rr.o}} {{rr.sourceDept}}
+
+            .adminSpkItem
+              .adminSpkItemWr
+                .adminSpkItemId НОВЫЙ КОД по одному в строку, формат: code;Ф;И O;depatment
+                  .adminSpkItemPosition
+                    textarea#newCode(placeholder="" style="height:10em; padding:4px;width:400px;resize:none;margin:12px 0")
+                  .adminSpkItemPosition
+                    button(v-on:click="addCode(document.getElementById('newCode').value)") Добавить коды
+        .adminSect(v-if="sect==8" )
+          .adminSectLoader.loaderWr(v-if="showLoader")
+            .loader
+            .loaderText идет загрузка...
+          .adminBody(v-show="!showLoader")
+            .adminSectTitle Голосования ({{votes.length}})
+                .adminSpkItem(v-for="vote in votes")
+                  .adminSpkItemPosition {{vote.total}}
+                    input(style="margin-left:20px; width:calc(100% - 100px)" placeholder="Вопрос для голосования" v-model="vote.title" v-on:change="voteChange(vote)")
+                    .adminSpkAnswWr
+                      .adminSpkAnswItem(v-for="(answer, i) in vote.answers")
+                        .adminSpkAnswItemTitleWr
+                          .adminSpkAnswItemTitle {{(answer.count)}} ({{parseInt(answer.perc*100)}}%)
+                          input(:placeholder="'ответ '+(i+1) " v-model="answer.title" v-on:change="answerChange(answer)")
+                      button(v-on:click="addVoteAnswer(vote)" style="margin-left: 80px;") Добавить ответ
+                      div(style="margin-top:10px")
+                        button( v-if="!vote.isactive" style="cursor:pointer;" v-on:click="voteStart(vote)") Запустить
+                        button( style="color:white;background:green;cursor:pointer" v-on:click="voteStart(vote)" v-else) Остановть
+                        button( v-if="!vote.iscompl" style="cursor:pointer" v-on:click="voteShow(vote)") Показать результаты
+                        button( style="color:white;background:green;cursor:pointer" v-on:click="voteShow(vote)" v-else) Скрыть результаты
+                .adminSpkItem
+                  .adminSpkItemWr
+                  .adminSpkItemPosition
+                    button(v-on:click="addVote()") Добавить голосование
+
+
+
+    script var disable=!{JSON.stringify(disable)}
+    script(src="/javascripts/axios.min.js")
+    script(src='/javascripts/vue.min.js')
+    script(src='/javascripts/moment.min.js')
+    script(src="https://cdn.anychart.com/releases/8.9.0/js/anychart-base.min.js")
+    script(src='/javascripts/adminScript.js')
+

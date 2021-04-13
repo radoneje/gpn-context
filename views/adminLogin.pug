@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title= "admin"
+    <meta charset="UTF-8">
+    <meta name="description" content="sber-pb conference">
+    <meta name="keywords" content="sber-pb">
+    <meta name="author" content="">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0">
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    style.
+      body{display: flex; align-items: center; justify-content: center;height: 100vh;}
+      form{max-width: 100%; width: 500px; padding: 20px; background: #EDECEC; border-radius: 2px}
+      input:focus, input:active{outline: none !important;}
+      input{display: block; border: none; border-bottom: 1px solid gray; padding: 6px 0; width: 100%; background: #EDECEC; margin:  10px 0}
+      .logon{text-align: center; padding: 4px 0; cursor: pointer; background: #7C8288; color: white;margin:  20px 0 }
+  body
+    form#form(method="POST", action="/admin")
+      input(name="l" placeholder="login")
+      input(type="password" name="p" placeholder="password")
+      .logon(onclick="document.getElementById('form').submit()") Log on
+

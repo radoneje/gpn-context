@@ -1,0 +1,48 @@
+doctype html
+html
+    head
+        title="vcbr"
+        <meta charset="UTF-8">
+        <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0">
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script.
+            try {
+                eval("let a=()=>{;;};")
+            } catch (e) {
+                console.log(e)
+                document.location.href = "/badbrowser"
+            }
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WD4C64RD24"></script>
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body(style="opacity:0")
+        .screenWr#app
+            .qWr()
+                include q
+        script(src="/javascripts/vue.min.js")
+        script(src="/javascripts/moment.min.js")
+        script(src="/javascripts/axios.min.js")
+        script(src="/javascripts/screenQScript.js")
+        script.
+            setTimeout(()=>{pageScroll(1);},1000);
+            function pageScroll(a) {
+                var before = window.scrollY;
+                window.scrollBy(0, a);
+                var after = window.scrollY;
+
+                if (before == after) {
+                    setTimeout(() => {
+                        window.scrollTo(0, 0);
+                    setTimeout(()=>pageScroll(a), 4 * 1000
+                )
+                    ;
+                },
+                    4 * 1000
+                )
+                    ;
+                } else
+                    setTimeout(()=>pageScroll(a), 20
+            )
+                ;
+            }
+

@@ -1,0 +1,18 @@
+<html>
+<head>
+
+</head>
+<body>
+<script>
+    "use strict";
+    let t={a:1};
+     t = new Proxy(t, {
+        get(target,prop, c, d){  console.log("get", target,prop,c,d);return true},
+        set(target,prop,c,d){  console.log("set", target,prop,c,d);return true},
+
+    });
+    t.a=2;
+    console.log("t", t.a)
+</script>
+</body>
+</html>
