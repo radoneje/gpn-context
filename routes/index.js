@@ -60,7 +60,7 @@ router.get('/', async (req, res, next) =>{
 });*/
 
 router.get('/login/:lang?', async (req, res, next) =>{
-  return res.render('start');
+  //return res.render('start');
   req.session["user"]=null;
   if(!req.params.lang)
     req.params.lang="ru"
@@ -82,8 +82,8 @@ router.get('/player', async (req, res, next) =>{
 router.get('/badbrowser', async (req, res, next) =>{
   res.render("badbrowser")
 })
-router.get('/index/:lang?', async (req, res, next) =>{
-  return res.render('start');
+router.get('/test/:lang?', async (req, res, next) =>{
+  //return res.render('start');
   if(!req.params.lang)
     req.params.lang="ru"
   req.params.lang=req.params.lang.toLowerCase();

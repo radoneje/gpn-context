@@ -1,11 +1,11 @@
 @color:#000000;
-@green: #00BBEE;
-@lite: rgba(210, 213, 95, 0.5);
-@gray:#555555;
+@green: #0070BA;
+@lite: #EFEFE0;
+@gray:#000000;
 @white:#ffffff;
-@red:#FFBB44;
-@litegray:#E6E9EB;
-@chat:#E6E9EB;
+@red:#F38B00;
+@litegray:#EFEFE0;
+@chat:#e3e5cc;
 
 input:focus, input:active, textarea:focus, textarea:active{
   outline: none !important;
@@ -24,101 +24,229 @@ input{
   appearance: none;
 }
 @font-face {
-  font-family: 'CB_StemRegular';
-  src: url('CB_Stem-Regular.eot');
+  font-family: 'DINPro';
+  src: url('/fonts/DINPro-Medium.eot');
   src:
-          url('/fonts/CB_Stem-Regular.eot?#iefix') format('embedded-opentype'),
-          url('/fonts/CB_Stem-Regular.ttf') format('truetype'),
-          url('/fonts/CB_Stem-Regular.woff2') format('woff2'),
-          url('/fonts/CB_Stem-Regular.woff') format('woff'),
-          url('/fonts/CB_Stem-Regular.svg#CB_Stem-Regular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Stem';
-  src: url('/fonts/Stem-Light.eot');
-  src: local('/fonts/Stem Light'), local('/fonts/Stem-Light'),
-  url('/fonts/Stem-Light.eot?#iefix') format('embedded-opentype'),
-  url('/fonts/Stem-Light.woff2') format('woff2'),
-  url('/fonts/Stem-Light.woff') format('woff'),
-  url('/fonts/Stem-Light.ttf') format('truetype');
-  font-weight: 100;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Stem';
-  src: url('/fonts/Stem-Medium.eot');
-  src: local('/fonts/Stem Medium'), local('/fonts/Stem-Medium'),
-  url('/fonts/Stem-Medium.eot?#iefix') format('embedded-opentype'),
-  url('/fonts/Stem-Medium.woff2') format('woff2'),
-  url('/fonts/Stem-Medium.woff') format('woff'),
-  url('/fonts/Stem-Medium.ttf') format('truetype');
+  url('/fonts/DINPro-Medium.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-Medium.woff') format('woff'),
+  url('/fonts/DINPro-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
+
 @font-face {
-  font-family: 'Stem';
-  src: url('/fonts/Stem-Bold.eot');
-  src: local('/fonts/Stem Bold'), local('/fonts/Stem-Bold'),
-  url('/fonts/Stem-Bold.eot?#iefix') format('embedded-opentype'),
-  url('/fonts/Stem-Bold.woff2') format('woff2'),
-  url('/fonts/Stem-Bold.woff') format('woff'),
-  url('/fonts/Stem-Bold.ttf') format('truetype');
+  font-family: 'DINPro';
+  src: url('/fonts/DINPro-BlackItalic.eot');
+  src:
+  url('/fonts/DINPro-BlackItalic.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-BlackItalic.woff') format('woff'),
+  url('/fonts/DINPro-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DINPro Cond';
+  src: url('/fonts/DINPro-CondensedBlackItalic.eot');
+  src:
+  url('/fonts/DINPro-CondensedBlackItalic.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-CondensedBlackItalic.woff') format('woff'),
+  url('/fonts/DINPro-CondensedBlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DINPro Cond';
+  src: url('/fonts/DINPro-CondensedMedium.eot');
+  src:
+  url('/fonts/DINPro-CondensedMedium.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-CondensedMedium.woff') format('woff'),
+  url('/fonts/DINPro-CondensedMedium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DINPro';
+  src: url('/fonts/DINPro-MediumItalic.eot');
+  src:
+  url('/fonts/DINPro-MediumItalic.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-MediumItalic.woff') format('woff'),
+  url('/fonts/DINPro-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DINPro';
+  src: url('/fonts/DINPro-Bold.eot');
+  src:
+  url('/fonts/DINPro-Bold.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-Bold.woff') format('woff'),
+  url('/fonts/DINPro-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
+
 @font-face {
-  font-family: 'Stem';
-  src: url('/fonts/Stem-SemiLight.eot');
-  src: local('/fonts/Stem Semi Light'), local('/fonts/Stem-SemiLight'),
-  url('/fonts/Stem-SemiLight.eot?#iefix') format('embedded-opentype'),
-  url('/fonts/Stem-SemiLight.woff2') format('woff2'),
-  url('/fonts/Stem-SemiLight.woff') format('woff'),
-  url('/fonts/Stem-SemiLight.ttf') format('truetype');
+  font-family: 'DINPro';
+  src: url('/fonts/DINPro-Light.eot');
+  src:
+  url('/fonts/DINPro-Light.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-Light.woff') format('woff'),
+  url('/fonts/DINPro-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
+
 @font-face {
-  font-family: 'Stem';
-  src: url('/fonts/Stem-ExtraLight.eot');
-  src: local('/fonts/Stem Extra Light'), local('/fonts/Stem-ExtraLight'),
-  url('/fonts/Stem-ExtraLight.eot?#iefix') format('embedded-opentype'),
-  url('/fonts/Stem-ExtraLight.woff2') format('woff2'),
-  url('/fonts/Stem-ExtraLight.woff') format('woff'),
-  url('/fonts/Stem-ExtraLight.ttf') format('truetype');
-  font-weight: 200;
+  font-family: 'DINPro Cond';
+  src: url('/fonts/DINPro-CondensedMediumItalic.eot');
+  src:
+  url('/fonts/DINPro-CondensedMediumItalic.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-CondensedMediumItalic.woff') format('woff'),
+  url('/fonts/DINPro-CondensedMediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DINPro';
+  src: url('/fonts/DINPro-Italic.eot');
+  src:
+  url('/fonts/DINPro-Italic.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-Italic.woff') format('woff'),
+  url('/fonts/DINPro-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DINPro';
+  src: url('/fonts/DINPro.eot');
+  src:
+  url('/fonts/DINPro.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro.woff') format('woff'),
+  url('/fonts/DINPro.ttf') format('truetype');
+  font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
-  font-family: 'Stem';
-  src: url('/fonts/Stem-Thin.eot');
-  src: local('/fonts/Stem Thin'), local('/fonts/Stem-Thin'),
-  url('/fonts/Stem-Thin.eot?#iefix') format('embedded-opentype'),
-  url('/fonts/Stem-Thin.woff2') format('woff2'),
-  url('/fonts/Stem-Thin.woff') format('woff'),
-  url('/fonts/Stem-Thin.ttf') format('truetype');
-  font-weight: 400;
-  font-family: 'CB_StemRegular';
-  font-weight: 400;
+  font-family: 'DINPro Cond';
+  src: url('/fonts/DINPro-CondensedBlack.eot');
+  src:
+  url('/fonts/DINPro-CondensedBlack.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-CondensedBlack.woff') format('woff'),
+  url('/fonts/DINPro-CondensedBlack.ttf') format('truetype');
+  font-weight: 900;
   font-style: normal;
 }
+
 @font-face {
-  font-family: 'Stem';
-  src: url('/fonts/Stem-Regular.eot');
-  src: local('/fonts/Stem Regular'), local('/fonts/Stem-Regular'),
-  url('/fonts/Stem-Regular.eot?#iefix') format('embedded-opentype'),
-  url('/fonts/Stem-Regular.woff2') format('woff2'),
-  url('/fonts/Stem-Regular.woff') format('woff'),
-  url('/fonts/Stem-Regular.ttf') format('truetype');
+  font-family: 'DINPro Cond';
+  src: url('/fonts/DINPro-CondensedBold.eot');
+  src:
+  url('/fonts/DINPro-CondensedBold.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-CondensedBold.woff') format('woff'),
+  url('/fonts/DINPro-CondensedBold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'DINPro';
+  src: url('/fonts/DINPro-Black.eot');
+  src:
+  url('/fonts/DINPro-Black.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-Black.woff') format('woff'),
+  url('/fonts/DINPro-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DINPro';
+  src: url('/fonts/DINPro-LightItalic.eot');
+  src:
+  url('/fonts/DINPro-LightItalic.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-LightItalic.woff') format('woff'),
+  url('/fonts/DINPro-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DINPro Cond';
+  src: url('/fonts/DINPro-CondensedBoldItalic.eot');
+  src:
+  url('/fonts/DINPro-CondensedBoldItalic.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-CondensedBoldItalic.woff') format('woff'),
+  url('/fonts/DINPro-CondensedBoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DINPro Cond';
+  src: url('/fonts/DINPro-CondensedRegular.eot');
+  src:
+  url('/fonts/DINPro-CondensedRegular.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-CondensedRegular.woff') format('woff'),
+  url('/fonts/DINPro-CondensedRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DINPro Cond';
+  src: url('/fonts/DINPro-CondensedItalic.eot');
+  src:
+  url('/fonts/DINPro-CondensedItalic.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-CondensedItalic.woff') format('woff'),
+  url('/fonts/DINPro-CondensedItalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DINPro Cond';
+  src: url('/fonts/DINPro-CondensedLightItalic.eot');
+  src:
+  url('/fonts/DINPro-CondensedLightItalic.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-CondensedLightItalic.woff') format('woff'),
+  url('/fonts/DINPro-CondensedLightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DINPro Cond';
+  src: url('/fonts/DINPro-CondensedLight.eot');
+  src:
+  url('/fonts/DINPro-CondensedLight.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-CondensedLight.woff') format('woff'),
+  url('/fonts/DINPro-CondensedLight.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DINPro';
+  src: url('/fonts/DINPro-BoldItalic.eot');
+  src: 
+  url('/fonts/DINPro-BoldItalic.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/DINPro-BoldItalic.woff') format('woff'),
+  url('/fonts/DINPro-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
 }
 body {
   padding: 0;
   margin: 0;
   font-size: 12px;
-  font-family: 'Stem';
+  font-family: 'DINPro'
 }
 .adminPrivateMessage input{
   border: 1px solid @gray;
@@ -809,39 +937,91 @@ margin-right: .5em;
   align-items: center;
   justify-content: center;
 }
-.loginWr{
+.loginWr, .logoWr{
+  width: 50%;
+  box-sizing: border-box;
+}
+.red{
+  color:@red;
+}
+.loginH1{
+  font-style: normal;
+  font-weight: 900;
+  font-size: 120px;
+  line-height: 146px;
+  /* identical to box height */
+
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-align: right;
+}
+.loginH2{
+  text-align: right;
+  background: @green;
+  color:@white;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 47px;
+  letter-spacing: 0.01em;
+  margin-right: 60px;
+}
+.loginH2Box{
+  text-align: left;
+  padding: 16px 68px;
+  float: right;
+  text-align: right;
+
+}
+.loginCenter{
+  margin:0 60px;
+
+}
+.loginMain{
+  display: flex;
   width: 100%;
-  max-width: 800px;
+}
+.loginWr{
   /* padding: 32px; */
   overflow: hidden;
   /* background: #ffffff; */
   border-radius: 12px;
+  background-color: @litegray;
+  border-radius: 0;
+  padding-left: 119px;
+  padding-top: 120px;
+  padding-bottom: 354px;
 
 }
+.loginForm{
+  max-width: 546px;
+}
 .loginTitle{
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 32px;
+
   color: @gray;
   margin-bottom: 32px;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 68px;
+  /* identical to box height */
+
+  text-transform: uppercase;
 }
 .regInput{
 
   border: 1px solid @litegray;
-  border-radius: 8px;
   background: @white;
   width: 100%;
-  font-size: 14px;
   box-sizing: border-box;
   margin-top: 10px;
   color:@gray;
   transition: color .5s ease;
-  padding: 15px 12px;
-  font-family: Stem;
+  padding: 14px 16px;
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 20px;
   position: relative;
 
 
@@ -865,7 +1045,7 @@ margin-right: .5em;
   transition: color .5s ease;
   padding: 15px 12px;
   display: flex;
-  font-family: Stem;
+  font-family: 'DINPro';
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -932,7 +1112,7 @@ background-color: @litegray;
   width: 100%;
   font-size: 18px;
   color: white;
-  background: @green;
+  background: @red;
   box-shadow: 0px 4px 12px rgba(0, 136, 187, 0.16);
   border-radius: 8px;
   cursor: pointer;
@@ -945,6 +1125,14 @@ background-color: @litegray;
   transition: background-color .5s ease;
   cursor: pointer;
   position: relative;
+}
+.pupirka{
+  position: fixed;
+  width: 1135px;
+  left: ~"calc(50% - (1140px / 2))";
+  top: 70%;
+  height: 30%;
+  background-image: url("/images/bg.svg");
 }
 .promice{
   color: @gray;
@@ -1164,7 +1352,7 @@ height:63px;
   padding: 10px;
   height: 6em;
   width: calc(100% );
-  font-family: Stem;
+  font-family: 'DINPro';
   border: none;
   resize: none;
   background-color: @litegray;
@@ -1197,7 +1385,7 @@ height:63px;
   width: 600px;
   padding: 4px;
   resize: none;
-  font-family: Stem Arial;
+  font-family: 'DINPro';
 }
 .playerChatTitle{
   font-weight: 600;
@@ -1395,13 +1583,403 @@ border-radius: 0 8px 8px 0 ;
   font-size: 36px;
   line-height: 42px;
 }
-@media (max-width:1366px) {
-  .tower{
-    padding: 0 48px
+@keyframes finger {
+  0%{
+    top: -400px;
+  }
+  90%{
+    top: -70px;
+  }
+  95%{
+    top: -85px;
+  }
+  100%{
+    top: -81px;
+  }
+}
+
+.bounceIn {
+  -webkit-animation-name: bounceIn;
+  animation-name: bounceIn;
+  -webkit-animation-duration: .75s;
+  animation-duration: .75s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes bounceIn {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    -webkit-transform: scale3d(.9, .9, .9);
+    transform: scale3d(.9, .9, .9);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    -webkit-transform: scale3d(.97, .97, .97);
+    transform: scale3d(.97, .97, .97);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes bounceIn {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+    -webkit-transform: scale3d(.9, .9, .9);
+    transform: scale3d(.9, .9, .9);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+    -webkit-transform: scale3d(.97, .97, .97);
+    transform: scale3d(.97, .97, .97);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.bounceInDown {
+  -webkit-animation-name: bounceInDown;
+  animation-name: bounceInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes bounceInDown {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -3000px, 0);
+    transform: translate3d(0, -3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 25px, 0);
+    transform: translate3d(0, 25px, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, 5px, 0);
+    transform: translate3d(0, 5px, 0);
+  }
+
+  100% {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes bounceInDown {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -3000px, 0);
+    transform: translate3d(0, -3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 25px, 0);
+    transform: translate3d(0, 25px, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, 5px, 0);
+    transform: translate3d(0, 5px, 0);
+  }
+
+  100% {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+.finger{
+  position: fixed;
+  top: -81px;
+  left: 50%;
+ // animation: finger 1s ;
+
+  width: 300px;
+  height: 300px;
+  background-image: url("/images/finger.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.bounceInLeft {
+  -webkit-animation-name: bounceInLeft;
+  animation-name: bounceInLeft;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes bounceInLeft {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-3000px, 0, 0);
+    transform: translate3d(-3000px, 0, 0);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(25px, 0, 0);
+    transform: translate3d(25px, 0, 0);
+  }
+  75% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(5px, 0, 0);
+    transform: translate3d(5px, 0, 0);
+  }
+  100% {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes bounceInLeft {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-3000px, 0, 0);
+    transform: translate3d(-3000px, 0, 0);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(25px, 0, 0);
+    transform: translate3d(25px, 0, 0);
+  }
+  75% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(5px, 0, 0);
+    transform: translate3d(5px, 0, 0);
+  }
+  100% {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+.bounceInUp {
+  -webkit-animation-name: bounceInUp;
+  animation-name: bounceInUp;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes bounceInUp {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 3000px, 0);
+    transform: translate3d(0, 3000px, 0);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+  }
+  75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes bounceInUp {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 3000px, 0);
+    transform: translate3d(0, 3000px, 0);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+  }
+  75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+@media (max-width:1919px) {
+  .loginWr{
+    padding: 96px 64px;
+  }
+  .pupirka{
+    left: ~"calc(50% - (900px / 2))";
+    max-width: 900px;
+    top: 77%;
+    height: 23%;
+  }
+  .finger{
+    width: 200px;
+    height: 200px;
+    top:-24px;
+  }
+}
+@media (max-width:1919px) {
+  .loginH1 {
+    font-size: 91px;
+  }
+}
+@media (max-width:1366px) {
+  .tower{
+    padding: 0 48px;
+    padding-bottom: 175px;
+
+  }
+
+
+}
+@media (max-width:1160px) {
+  .loginH2 {
+    font-size: 26px;
+    line-height: 36px;
+  }
+  .loginH1 {
+    font-size: 71px;
+  }
+  .loginTitle{
+    font-size: 51px;
+    line-height: 60px;
+  }
 }
 @media (max-width:980px) {
+  .loginH1{
+    font-size: 58px;
+    line-height: 84px;
+    /* identical to box height */
+  text-align: left;
+    letter-spacing: 0.01em;
+  }
+  .loginH2Box{
+    font-size: 20px;
+    line-height: 24px;
+    float: left;
+    text-align: left;
+    padding: 16px 20px;
+  }
+  .loginCenter{
+    margin: 0 10px;
+
+  }
+  .loginTitle{
+    font-size: 40px;
+    line-height: 49px;
+  }
+  .loginMain{
+    position: relative;
+  }
+  .finger{
+    background-image: url("/images/bg_mobile.png");
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 22px;
+    left: ~"calc(100% - 107px)";
+  }
+  .pupirka {
+    left: auto;
+    max-width: 100%;
+    width: 100%;
+    top: ~"calc( 100% - 30px)";
+    height: 30px;
+  }
+  .loginMain{
+    display: block;
+  }
+  .loginWr, .logoWr{
+    width: 100%;
+  }
   .voteBox{
     padding: 12px;
     box-sizing: border-box;

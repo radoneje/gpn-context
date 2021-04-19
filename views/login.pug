@@ -1,76 +1,41 @@
 doctype html
 html
     head
-        title="vcbr.ru"
-        <meta charset="UTF-8">
-        <meta name="description" content="КОНТЕКСТ">
-        <meta name="keywords" content=" КОНТЕКСТ">
-        <meta name="author" content="КОНТЕКСТ">
-        <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0">
-
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
-
-        <meta name="msapplication-TileColor" content="#ffffff">
-
-        <meta name="theme-color" content="#ffffff">
-
-        <meta property="og:locale" content="ru_RU">
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="КОНТЕКСТ" />
-        meta(property="og:title" content="КОНТЕКСТ")
-        meta(property="og:description" content="КОНТЕКСТ" )
-        <meta property="og:image" content="https://gpn-context.ru/favicon-32x32.png" />
-        link(rel='stylesheet', href='/stylesheets/style.css')
-        script.
-            try {
-                eval("let a=()=>{;;};")
-            } catch (e) {
-                console.log(e)
-                document.location.href = "/badbrowser"
-            }
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WD4C64RD24"></script>
-        link(rel='stylesheet', href='/stylesheets/style.css')
+       include meta
     body()
         .underWork#app(style="overflow-y:scroll" v-on:click="showDeptDialog=false")
-            .loginWr
-                .loginTitle Регистрация
-                form.loginForm(method="POST")
-                        input.regInput#finput(placeholder="Фамилия" + "*" v-model="user.f" v-on:change="checkf(user.f)" onkeypress="if(event.keyCode==13) document.getElementById('iinput').focus()")
-                        .regInputError
-                            .regInputErrorTitle(v-bind:class="{active:err.f}") Поле должно быть заполнено корректно
-                        input.regInput#iinput(placeholder=" Имя" + "*" v-model="user.i" v-on:change="checki(user.i)" onkeypress="if(event.keyCode==13) document.getElementById('oinput').focus()")
-                        .regInputError
-                            .regInputErrorTitle(v-bind:class="{active:err.i}") Поле должно быть заполнено корректно
-                        input.regInput#oinput(placeholder="Отчество" v-model="user.o" onkeypress="if(event.keyCode==13) document.getElementById('codeinput').focus()")
-                        .regInputError
-                            .regInputErrorTitle
-                        .divRegInput(v-on:click.stop.prevent="showDeptDialog=!showDeptDialog")
-                            .divRegInputText {{user.dept.title}}
-                            .divRegInputLogo
-                                <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path opacity="0.7" d="M1 1L6.29289 6.29289C6.68342 6.68342 7.31658 6.68342 7.70711 6.29289L13 1" stroke="#555555" stroke-width="1.5" stroke-linecap="round"/>
-                                </svg>
-                            .DeptDialog(v-show="showDeptDialog" style="display: none;")
-                                .deptDialogItem(v-for="item in dept" v-bind:class="{active:(item.id==user.dept.id)}" v-on:click="deptChange(item)") {{item.title}}
-                        .regInputError
-                            .regInputErrorTitle(v-bind:class="{active:err.dept}") Подразделение должнло быть выбрано
-                        input.regInput#codeinput(type="text" placeholder="Код" + "*" v-model="user.code" v-on:change="checkCode(user.code)")
-                        .regInputError
-                            .regInputErrorTitle(v-bind:class="{active:err.code}" v-if="err.code") Поле должно быть заполнено корректно
-                            .regInputErrorTitle(v-bind:class="{active:err.codeUncorrect}" v-if="err.codeUncorrect") Код, или фамилия, или имя не зарегистрированы, попробуйте еще раз
-                        .regBtn#regBtn(type="button" v-on:click="register()" v-bind:class="{disabled:!user.promice}")
-                            div Войти
-                            .regBtnLoaderWr(v-if="isLoad")
-                            .regBtnLoaderWrColor(v-if="isLoad")
-                            .regBtnLoader(v-on:click.stop.prevent="void(1)" v-if="isLoad")
-                                .regBtnLoaderText Подождите, идет проверка
-                        .promice Техническая поддержка +7 (495) 260-19-93
-                        .promice При входе Вы даете <a href="/images/promice.pdf" target="_blank"> cогласие на обработку и передачу своих персональных данных.</a>
+            .loginMain
+                .logoWr
+                    .loginCenter
+                        .loginH1
+                            span кон
+                            span.red текст
+                    .loginH2
+                        .loginH2Box.bounceInLeft
+                            div КОММУНИКАЦИОННАЯ СЕССИЯ
+                            div «ГАЗПРОМ НЕФТИ»
+                        div(style="clear: both;")
+                .loginWr
+                    .loginTitle Регистрация
+                    form.loginForm(method="POST")
+                            input.regInput#finput(placeholder="ВАШЕ ИМЯ" + "*" v-model="user.f" v-on:change="checkf(user.f)" onkeypress="if(event.keyCode==13) document.getElementById('iinput').focus()")
+                            .regInputError
+                                .regInputErrorTitle(v-bind:class="{active:err.f}") Поле должно быть заполнено корректно
+                            input.regInput#codeinput(type="text" placeholder="КОД-ПАРОЛЬ" + "*" v-model="user.code" v-on:change="checkCode(user.code)")
+                            .regInputError
+                                .regInputErrorTitle(v-bind:class="{active:err.code}" v-if="err.code") Поле должно быть заполнено корректно
+                                .regInputErrorTitle(v-bind:class="{active:err.codeUncorrect}" v-if="err.codeUncorrect") Код, или фамилия, или имя не зарегистрированы, попробуйте еще раз
+                            .regBtn#regBtn(type="button" v-on:click="register()" v-bind:class="{disabled:!user.promice}")
+                                div ЗАРЕГИСТРИРОВАТЬСЯ
+                                .regBtnLoaderWr(v-if="isLoad")
+                                .regBtnLoaderWrColor(v-if="isLoad")
+                                .regBtnLoader(v-on:click.stop.prevent="void(1)" v-if="isLoad")
+                                    .regBtnLoaderText Подождите, идет проверка
+                            .promice Техническая поддержка +7 (495) 260-19-93
+                            //.promice При входе Вы даете <a href="/images/promice.pdf" target="_blank"> cогласие на обработку и передачу своих персональных данных.</a>
 
+                .pupirka.bounceIn
+                .finger.bounceInDown
         script.
             var dept=!{JSON.stringify(dept)}
             document.addEventListener('touchmove', function (event) {
