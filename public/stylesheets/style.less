@@ -1890,6 +1890,12 @@ border-radius: 0 8px 8px 0 ;
     transform: translate3d(0, 0, 0);
   }
 }
+.loginWr.startFull{
+
+}
+.loginWr.startMobile{
+  display: none;
+}
 @media ( min-width:980px ) {
   @media (max-height:634px  ) {
   .finger {
@@ -1948,6 +1954,7 @@ border-radius: 0 8px 8px 0 ;
 
 
 @media (max-width:980px) {
+
   .loginH1{
     font-size: 58px;
     line-height: 84px;
@@ -2212,6 +2219,22 @@ border-radius: 0 8px 8px 0 ;
   .layerCol1{
     //top: 32%;
     bottom: 30%;
+  }
+}
+@media (max-width:425px) {
+  .loginWr.startFull {
+    display: none;
+  }
+
+  .loginWr.startMobile {
+    display: flex;
+    margin: 16px 0;
+    padding: 0;
+  }
+
+  .loginWr.startMobile img {
+    width: 280px;
+    height: auto;
   }
 }
 
