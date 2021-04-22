@@ -1,59 +1,21 @@
 doctype html
 html
   head
-    title="vcbr"
-    <meta charset="UTF-8">
-    <meta name="description" content="мероприятие vcbr ">
-    <meta name="keywords" content=" ">
-    <meta name="author" content="">
-    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="57x57" href="/images/cbicons/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/images/cbicons/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/images/cbicons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/images/cbicons/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/images/cbicons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/images/cbicons/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/images/cbicons/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/images/cbicons/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/cbicons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/images/cbicons/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/cbicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/images/cbicons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/cbicons/favicon-16x16.png">
-    <link rel="manifest" href="/images/cbicons/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/images/cbicons/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="shortcut icon" href="/images/cbicons/favicon.ico" type="image/x-icon">
-    <meta property="og:locale" content="ru_RU">
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://vcbr.ru/" />
-    meta(property="og:title" content="мероприятие vcbr")
-    meta(property="og:description" content="мероприятие vcbr" )
-    <meta property="og:image" content="https://www.cbr.ru/common/images/share-1.jpg" />
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script.
-      try {
-        eval("let a=()=>{;;};")
-      } catch (e) {
-        console.log(e)
-        document.location.href = "/badbrowser"
-      }
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WD4C64RD24"></script>
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    include meta
   body(style="opacity:0")
     header
       .headerTower
         include header
 
     footer#app
-      .tower
-        block content
-      .tower
-        include pgm
-        include spk
-      .footerWr
+      .bgGray.pad80(style="")
+        .tower.pipirkaWR
+          block content
+      .bgLite.pad80
+        .tower.pipirkaWR
+          //include pgm
+          include spk
+      //.footerWr
         .tower
           .footerLogoWr
             .footerLogo
@@ -71,7 +33,7 @@ html
               <path d="M147.41 28.5451C147.276 28.5451 146.905 28.5896 146.742 28.6044C146.905 27.0318 146.935 24.2278 146.935 23.3525C146.935 22.2991 146.92 19.6584 146.742 18.1006C147.098 18.1154 147.543 18.1599 147.796 18.1599C148.018 18.1599 148.463 18.1154 148.775 18.1006C148.612 19.6584 148.597 22.2695 148.597 23.3525C148.597 24.2278 148.612 25.4444 148.641 26.0378C149.784 24.6432 153.849 19.4803 154.828 18.1006C155.05 18.1451 155.199 18.1599 155.451 18.1599C155.57 18.1599 156.015 18.1154 156.237 18.1006C156.074 19.6584 156.044 22.2695 156.044 23.3525C156.044 24.2278 156.059 27.0318 156.237 28.6044C155.926 28.5599 155.584 28.5451 155.288 28.5451C154.932 28.5451 154.516 28.5599 154.205 28.6044C154.368 27.0318 154.398 24.2278 154.398 23.3525C154.398 22.2695 154.383 20.9491 154.353 20.504C152.944 21.9431 149.205 26.8389 148.018 28.6044C147.825 28.5599 147.632 28.5451 147.41 28.5451Z" fill="white"/>
               <path d="M159.173 28.5451C159.039 28.5451 158.668 28.5896 158.505 28.6044C158.668 27.0318 158.683 24.2278 158.683 23.3525C158.683 22.2991 158.668 19.6584 158.505 18.1006C158.861 18.1154 159.306 18.1599 159.559 18.1599C159.781 18.1599 160.226 18.1154 160.538 18.1006C160.375 19.6584 160.36 22.2695 160.36 23.3525C160.36 24.2278 160.375 25.4444 160.404 26.0378C161.547 24.6432 165.612 19.4803 166.591 18.1006C166.813 18.1451 166.962 18.1599 167.214 18.1599C167.333 18.1599 167.778 18.1154 168 18.1006C167.837 19.6584 167.822 22.2695 167.822 23.3525C167.822 24.2278 167.837 27.0318 168 28.6044C167.689 28.5599 167.362 28.5451 167.051 28.5451C166.695 28.5451 166.279 28.5599 165.968 28.6044C166.131 27.0318 166.146 24.2278 166.146 23.3525C166.146 22.2695 166.131 20.9491 166.101 20.504C164.692 21.9431 160.953 26.8389 159.766 28.6044C159.588 28.5599 159.395 28.5451 159.173 28.5451Z" fill="white"/>
               </svg>
-      .headerMenuWr#headerMenuWr
+      //.headerMenuWr#headerMenuWr
         .tower
           .headerMenuLogo(style="float:left")
             <svg width="128" height="32" viewBox="0 0 128 32" fill="none" xmlns="http://www.w3.org/2000/svg">

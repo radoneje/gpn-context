@@ -17,10 +17,8 @@ var login=new Vue({
         },
         register:async function(){
             this.checkf(this.user.f);
-            this.checki(this.user.i);
             this.checkCode(this.user.code);
-            this.checkDep(this.user.dept);
-            if(this.err.f || this.err.i || this.err.code || this.err.dept)
+                     if(this.err.f || this.err.code )
                 return;
             this.isLoad=true;
             var res=await axios.post("/api/registerUser",this.user);
@@ -38,12 +36,12 @@ var login=new Vue({
             this.err.f=false ;
             if(f.length<2)
                 return  this.err.f=true;
-            f=f.replace(/\s/g,"");
-            var m=f.match(/([а-яА-ЯЁё\-]{2,120})/);
+            f=f.replace(/\s+/g," ");
+            var m=f.match(/([а-яА-ЯЁё\s\-]{2,120})/);
             if(!m)
                 return this.err.f = true;
-            this.user.f=m[1].substr(0,1).toUpperCase()+m[1].substring(1);
-            this.err.codeUncorrect=false;
+            //this.user.f=m[1].substr(0,1).toUpperCase()+m[1].substring(1);
+            this.err.f=false;
         },
         checki:function(f){
             this.err.i=false ;
@@ -60,7 +58,7 @@ var login=new Vue({
             if(f.length<5)
                 return  this.err.code=true;
             f=new String(f);
-            var m=f.match(/([\d]{5,7})/);
+            var m=f.match(/([\d]{5,10})/);
 
             if(!m)
                 return this.err.code = true;

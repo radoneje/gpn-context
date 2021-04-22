@@ -1,0 +1,12 @@
+.voteBox
+    .voteItem(v-for="item in tags" v-if="item.isactive")
+        .voteItemTitle {{item.title}}
+        .voteItemAnwers(v-if="!item.iscompl")
+            input.tagsInput(placeholder="Напишите слова через запятую" v-model="tag" :readonly="isTagsCompl['id'+item.id]")
+            .voteBtnTags.regBtn(v-on:click="tagsSend(item)" v-if="!isTagsCompl['id'+item.id]") Проголосовать
+            .voteBtnTags.regBtn( v-else) Ваш голос учтен
+        .voteItemAnwers(v-else)
+            .voteBtnTags.regBtn( v-on:click="tagsResShow(item)") Посмотреть результаты
+
+
+

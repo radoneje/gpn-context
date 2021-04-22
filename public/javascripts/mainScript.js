@@ -4,7 +4,7 @@ var pgm=new Vue({
         content:content,
         pgmItem:content.pgm[0],
         speakers:speakers,
-        playerSect:0,
+        playerSect:1,
         qText:"",
         q:[],
         chat:[],
@@ -12,13 +12,32 @@ var pgm=new Vue({
         chatText:"",
         messages:[],
         votes:[],
+        tags:[],
+        tag:[],
+        isTagsCompl:{},
         myVotes:[],
         state:{q:true, chat:true}
     },
     methods:{
+        tagsResShow:function(item){
+            window.open('/tagsres/'+item.id)
+        },
         checkVote: function(answer){
             console.log(this.myVotes.filter(v=>v.voteid==answer.voteid && v.id==answer.id).length>0)
             return this.myVotes.filter(v=>v.voteid==answer.voteid && v.id==answer.id).length>0
+        },
+        tagsSend:async function(vote) {
+
+            if (this.tag.length == 0)
+                return;
+            this.isTagsCompl["id" + vote.id] = true;
+            var json = JSON.stringify(this.isTagsCompl)
+            localStorage.setItem("tags", json);
+
+            this.tags = this.tags.filter(r => {
+                return true
+            })
+            await axios.post("/api/tagsDo",{id:vote.id, text:this.tag})
         },
         voting:async function(answer){
 
@@ -36,7 +55,8 @@ var pgm=new Vue({
         updateVote:async function(){
             try {
                 var ret = await axios.get("/api/votes");
-                this.votes = ret.data;
+                this.votes = ret.data.votes;
+                this.tags = ret.data.tags;
             }
             catch (e) {
                 console.warn(e)
@@ -191,6 +211,10 @@ var pgm=new Vue({
                 this.myVotes = JSON.parse(jsonvotes)
 
             }
+            var json =localStorage.getItem("tags");
+            if(json)
+                this.isTagsCompl=JSON.parse(json)
+
         }catch (e) {
            console.warn(e)
         }
@@ -222,11 +246,11 @@ window.addEventListener("scroll",(e)=>{
     var pers=1-parseFloat(a)/200;
     var elem=document.getElementById("headLayer01");
     elem.style.top=(20*pers)+"px";*/
-var elem=document.getElementById("headerMenuWr")
+/*var elem=document.getElementById("headerMenuWr")
   if(a>69 && elem.style.top!="0px")
       elem.style.top="0px"
   if(a<=69 && elem.style.top=="0px")
-        elem.style.top="-89px"
+        elem.style.top="-89px"*/
 
 
 })

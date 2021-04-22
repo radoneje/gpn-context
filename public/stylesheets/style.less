@@ -248,6 +248,11 @@ body {
   font-size: 12px;
   font-family: 'DINPro'
 }
+header{
+  background-color: @chat;
+  width: 100%;
+  overflow-x: hidden;
+}
 .adminPrivateMessage input{
   border: 1px solid @gray;
   padding: 4px;
@@ -571,40 +576,50 @@ body {
   width: 99%;
 }
 #spk{
-  margin-top:48px;
+  padding-top: 48px;
+}
+.spkItemNameWr{
+  padding: 16px;
+  color:@white;
+  background-color: @green;
+  margin-top:21px;
+  height: 196px;
 }
 .spkItemPhotoWr{
   width: 168px;
   height: 168px;
   border: 1px solid @litegray;
   box-sizing: border-box;
-  border-radius: 12px;
+  border-radius: 50%;
   background-size: cover;
   background-position: center;
+  filter: grayscale(100%);
 }
 .spkBody{
   display: flex;
   flex-wrap: wrap;
   gap: 64px 0;
+  width: 67%;
 }
 .spkItem{
   //flex-grow: 1;
-  width: 25%;
+  width: 33%;
  box-sizing: border-box;
   padding-right: 32px;
+
 }
 .spkItemName{
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 24px;
-  margin-top:12px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.01em;
+
 }
 .spkItemPos{
+  font-style: italic;
   font-weight: normal;
-  font-size: 14px;
-  line-height: 22px;
-  font-weight: 300;
-  color: @gray;
+  font-size: 18px;
+  line-height: 24px;
   margin-top: 8px;
 }
 .footerWr{
@@ -621,18 +636,33 @@ body {
   align-items: center;
 }
 h2{
-  font-weight: 300;
-  font-size: 48px;
-  line-height: 62px;
-  margin-bottom: 0.2em;
+  position: absolute;
+  top: 98px;
+  left: 1090px;
+  background-color: #0070BA;
+  color: #ffffff;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 38px;
+  letter-spacing: .01em;
+  width: 100vw;
+  padding: 9px 16px;
+  box-sizing: border-box;
 }
 h1{
-  font-weight: 400;
-  font-size: 48px;
-  line-height: 62px;
-  margin-bottom: 32px;
-  width: 50%;
-  margin-top:0 ;
+  position: absolute;
+  top: 0;
+  left: 425px;
+  color: @color;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 128px;
+  line-height: 156px;
+  /* identical to box height */
+
+  letter-spacing: 0.01em;
+
 }
 .headerMenuWr{
   position: fixed;
@@ -732,13 +762,28 @@ h1{
 .headerBox{
   position: relative;
   border-radius: 0 0 12px 12px;
-  height: 657px;
+  height: 432px;
   overflow:hidden;
 }
-.pgm{
-  margin-top:48px;
+.pipirkaWR{
+  position: relative;
+  padding-bottom: 80px;
 }
-
+.pipirkaWR:before{
+  position: absolute;
+  width: 33%;
+  left: 64%;
+  height: 100%;
+  content: "";
+  background-image: url(/images/bg.svg);
+}
+.pgm{
+  padding-top:48px;
+}
+.mainLogo svg{
+  width: 390px;
+  height: 390px;
+}
 
 .tower.headerTower{
   padding: 0;
@@ -903,7 +948,7 @@ h1{
   position: absolute;
   top: 32px;
   color: white;
-  left: 0;
+  left: -302px;
 }
 .headerDate{
   position: relative;
@@ -1171,7 +1216,7 @@ background-color: @litegray;
   100%{width: ~"calc(100% - 2px)"}
 }
 .regBtnLoaderWrColor{
-  background-color: @green;
+  background-color: @red;
   //transition: width 4s ease;
   width: 0;
   animation: loader 4s infinite;
@@ -1187,13 +1232,17 @@ background-color: @litegray;
 #headLayer05{background-image: url(/images/05_l.png);}
 #headLayer06{background-image: url(/images/06_l.png);}
 
+
 .playerBox{
   display: flex;
   background-color: @white;
-  border-radius: 10px;
+
   overflow:hidden;
   margin-top: -118px;
-  box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.4);
+ // box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.4);
+
+  filter: drop-shadow(8px 16px 24px rgba(148, 178, 194, 0.16));
+
 }
 .playerLeft{
   width: 66%;
@@ -1202,8 +1251,15 @@ background-color: @litegray;
 .playerBox.fullScreen{
   max-width: 980px;
   margin:0 auto;
-  margin-top: -118px;
+
 }
+.bgGray{
+  background-color: @chat;
+}
+.bgLite{
+  background-color: @litegray;
+}
+
 .playerBox.fullScreen .playerLeft{
   width: 100%
 }
@@ -1245,6 +1301,7 @@ background-color: @litegray;
 .playerRight{
   width: 34%;
   position: relative;
+  height: 640px;
 }
 .playerRightHead, .playerLeftHead{
 
@@ -1298,7 +1355,7 @@ height:63px;
 .playerChatInputForm{
   display: flex;
   align-items: center;
-  background: @chat;
+ // background: @chat;
   position:relative;
 }
 .playerChatInputFormLoaderWr{
@@ -1307,7 +1364,7 @@ height:63px;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: @chat;
+  background-color: @white;
 }
 .adminBody .playerChatPole{
   height: 100% !important;
@@ -1418,6 +1475,12 @@ height:63px;
 .adminSpkAnswItemTitleWr input{
   width: ~"calc(100% - 80px)";
 }
+.tagsInput{
+  padding: 4px;
+  border:1px solid @litegray;
+  width: 100%;
+  box-sizing: border-box;
+}
 .voteWr{
   position: absolute;
   width: 100%;
@@ -1433,7 +1496,7 @@ height:63px;
   box-sizing: border-box;
   padding: 20px;
   overflow-y: scroll;
-  background-color: @gray;
+  background-color: @green;
   color: @white;
 }
 .voteItem{
@@ -1457,8 +1520,13 @@ height:63px;
   line-height: 18px;
   padding:.5em 10px;
 margin-bottom: .5em;
-  border-radius: 6px;
   transition: all .5s ease;
+}
+.voteBtnTags{
+
+}
+.tagRes{
+  background: @litegray;
 }
 .voteItemAnswersItemTitle{
   width:75%;
@@ -1476,7 +1544,7 @@ margin-bottom: .5em;
   left: 0;
   top: 0;
   position: absolute;
-  border-radius: 4px;
+
   border: 1px solid @litegray;
   transition: border .5s ease;
 }
@@ -1488,12 +1556,12 @@ margin-bottom: .5em;
   border: 1px solid @gray;
 }
 .voteItemAnswersItem.ready{
-  background:@green !important;
-  color: @white !important;
+  background:@white !important;
+  color: @gray !important;
 }
 
 .voteItemAnswersItem.ready .voteItemAnswersItemCheck:before{
-  background-color: @white;
+  background-color: @green;
   border: 1px solid @litegray;
 }
 .voteItemAnswersItemValueWr{
@@ -1909,6 +1977,24 @@ border-radius: 0 8px 8px 0 ;
 
 }
 @media (max-width:1919px) {
+  h1{
+    font-size: 107px;
+  }
+  h2{
+    top: 209px;
+    left: 434px;
+  }
+  .spkItemName{
+    font-size: 18px;
+    line-height: 24px;
+  }
+  header{
+    overflow: hidden;
+  }
+  .pipirkaWR:before {
+    left: 65%;
+
+  }
   .loginWr{
     padding: 96px 64px;
   }
@@ -1954,7 +2040,9 @@ border-radius: 0 8px 8px 0 ;
 
 
 @media (max-width:980px) {
-
+  .pipirkaWR:before {
+   display: none;
+  }
   .loginH1{
     font-size: 58px;
     line-height: 84px;
@@ -1962,6 +2050,7 @@ border-radius: 0 8px 8px 0 ;
   text-align: left;
     letter-spacing: 0.01em;
   }
+
   .loginH2Box{
     font-size: 20px;
     line-height: 24px;
@@ -1981,19 +2070,20 @@ border-radius: 0 8px 8px 0 ;
     position: relative;
   }
   .finger{
-    background-image: url("/images/bg_mobile.png");
+    background-image: url(/images/bg_mobile.png);
     position: absolute;
-    width: 200px;
-    height: 200px;
-    top: 22px;
-    left: ~"calc(100% - 107px)";
+    width: 350px;
+    height: 350px;
+    top: 14px;
+    left: ~"calc(100% - 189px)";
   }
   .pupirka {
     left: auto;
     max-width: 100%;
     width: 100%;
-    top: ~"calc( 100% - 30px)";
-    height: 30px;
+    top: ~"calc( 100% )";
+    height: 64px;
+    position: absolute;
   }
   .loginMain{
     display: block;
@@ -2020,9 +2110,10 @@ border-radius: 0 8px 8px 0 ;
   .loginWr{
     margin: 32px auto;
     padding: 16px 32px;
-    margin-top: 28px;
+    margin-top: 71px;
     margin-bottom: 0;
     box-sizing: border-box;
+    position: relative;
   }
   .tower{
     padding: 0 20px
@@ -2031,19 +2122,32 @@ border-radius: 0 8px 8px 0 ;
     width: 100%;
   }
   h1{
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 32px;
+
     width: 100%;
+    left:258px;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 64px;
+    line-height: 78px;
+
+
+    letter-spacing: 0.01em;
   }
   h2{
     font-weight: 300;
     font-size: 18px;
     line-height: 23px;
+
+      top: 111px;
+      left: 278px;
+
   }
   .headerBox{
-    height: 100vh;
+    height: 165px;
     border-radius: 0;
+  }
+  .spkBody{
+    width: 100%;
   }
   .pgmTitle{
     font-size: 24px;
@@ -2090,6 +2194,10 @@ border-radius: 0 8px 8px 0 ;
   }
   .pgmItemSpeakersWr{
    // gap: 20px 0;
+  }
+  .spkItemNameWr{
+    height: auto;
+    width: 100%;
   }
   .spkItemPhotoWr{
     width: 96px;
@@ -2167,14 +2275,21 @@ border-radius: 0 8px 8px 0 ;
     display: none;
   }
   .headerTitleWr{
-    top:28px;
+    top:0px;
     width: 100%;
+    left: -180px;
   }
   .mainLogo{
     padding-bottom: 12px;
     margin-bottom: 48px;
-    border-bottom: 1px solid @white;
+    top: 0;
+    left: 71px;
+    position: absolute;
     text-align: center;
+  }
+  .mainLogo svg {
+    width: 200px;
+    height: 200px;
   }
   .playerBox, .playerBox.fullScreen {
     display: block;

@@ -283,9 +283,9 @@ router.post('/aliveUser', userLogin, async(req, res, next)=> {
     })
   }
   let messages=await req.knex.select("message").from("t_cbrf_users").where({id:req.session.user.id, messageIsActive:true})
-  let q=await req.knex.select("*").from("v_cbrf_q").where({userid:req.session.user.id}).orWhere({isReady:true}).orderBy("id");
+  let q=await req.knex.select("*").from("v_cbrf_q").orderBy("id");
   q=q.filter(q=>!q.isDeleted);
-  let chat =await req.knex.select("*").from("v_cbrf_chat").where({userid:req.session.user.id}).orderBy("id");
+  let chat =await req.knex.select("*").from("v_cbrf_chat").orderBy("id");
 
   if(!messages)
     messages=[];
@@ -308,10 +308,11 @@ router.get('/count', function(req, res, next) {
 router.post('/registerUser', async(req, res, next) =>{
 
   try {
-    var ret = await req.knex.select("*").from("t_cbrf_codes").where({
+
+    let ret = await req.knex.select("*").from("t_cbrf_codes").where({
       code: req.body.code,
-      f: req.body.f,
-      i: req.body.i
+      //f: req.body.f,
+     // i: req.body.i
     });
     if (ret.length == 0)
       return res.json({status: -1});
@@ -344,9 +345,59 @@ router.get('/votes', async(req, res, next) =>{
     item.answers=a
 
   }
+  var tags=await req.knex.select("*").from("t_cbrf_tags").where({isDeleted:false}).orderBy("id");
+  tags.answers;
+  for(var tag of tags){
+    tags.answers=await req.knex.select("*").from("t_cbrf_tagsanswers").where({isDeleted:false}).orderBy("id");
+  }
+  var r={
+    votes:ret,
+    tags:tags
+  };
+
+  res.json(r);
+
+})
+router.get('/tags', async(req, res, next) =>{
+
+//  req.knex.select("*").from("t_cbrf_codes")
+  var ret=await req.knex.select("*").from("t_cbrf_tags").where({isDeleted:false}).orderBy("id");;
+
+  /*for(var item of ret){
+    var total=0;
+    var a=await req.knex.select("*").from("t_cbrf_tagsanswers").where({isDeleted:false, voteid:item.id}).orderBy("id");
+    a.forEach(b=>{total+=b.count});
+
+    a.forEach(b=>{b.perc=parseFloat(parseFloat(b.count)/parseFloat(total==0?1:total))});
+    item.total=total;
+    item.answers=a
+
+  }*/
   res.json(ret);
 
 })
+router.post("/tagsDo/", userLogin, async (req, res, next) => {
+
+  var tagsid=req.body.id;
+  console.log("tagsDo",req.body)
+  var words=req.body.text.split(',');
+
+  var ret=[]
+  words.forEach(w=>{
+    ret.push( w.replace(/^\s+|\s+$/g, "").toUpperCase());
+  })
+  words=ret.filter(w=>{
+    return w.length>0
+  })
+  console.log("tagsDo",req.body,words)
+  for(var w of words){
+    var v = await req.knex("t_cbrf_tagsanswers")
+        .insert({val:w, tagsid:tagsid}, "*")
+  }
+  res.json(words.length);
+})
+
+
 router.post('/voting', userLogin, async(req, res, next) =>{
   var a=await req.knex.select("*").from("t_cbrf_voteanswers").where({id:req.body.id})
   await req.knex("t_cbrf_voteanswers").update({count:(a[0].count+1)}).where({id:req.body.id})
@@ -373,6 +424,12 @@ router.post('/voteAdd', adminLogin,async(req, res, next) =>{
   res.json(ret[0]);
 
 })
+
+router.post('/tagsAdd', adminLogin,async(req, res, next) =>{
+  var ret=await req.knex("t_cbrf_tags").insert({ date:new Date()},"*");
+  res.json(ret[0]);
+
+})
 router.post('/addVoteAnswer', adminLogin,async(req, res, next) =>{
   var ret=await req.knex("t_cbrf_voteanswers").insert({voteid:req.body.id},"*");
   res.json(ret[0]);
@@ -385,6 +442,14 @@ router.post('/voteChange', adminLogin,async(req, res, next) =>{
   delete req.body.answers;
   delete req.body.total;
   var ret=await req.knex("t_cbrf_vote").update(req.body,"*").where({id:id});
+  res.json(ret[0]);
+
+})
+router.post('/tagsChange', adminLogin,async(req, res, next) =>{
+  var id=req.body.id;
+  delete req.body.id;
+  delete req.body.answers;
+  var ret=await req.knex("t_cbrf_tags").update(req.body,"*").where({id:id});
   res.json(ret[0]);
 
 })

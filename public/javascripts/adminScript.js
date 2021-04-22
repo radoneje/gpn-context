@@ -16,6 +16,7 @@ var app=new Vue({
         redirect:[],
         newRedirect:{},
         votes:[],
+        tags:[],
         disable,
         state:{q:true, chat:true}
     },
@@ -52,10 +53,20 @@ var app=new Vue({
 
             await this.voteChange(vote);
         },
+        tagsShow:async function(vote){
+            vote.iscompl=!vote.iscompl;
+
+            await this.tagsChange(vote);
+        },
         voteStart:async function(vote){
             vote.isactive=!vote.isactive;
 
             await this.voteChange(vote);
+        },
+        tagsStart:async function(vote){
+            vote.isactive=!vote.isactive;
+
+            await this.tagsChange(vote);
         },
         voteChange:async function(vote){
             var ret= await axios.post("/api/voteChange", vote);
@@ -64,9 +75,16 @@ var app=new Vue({
                     v=ret.data;
             })
         },
+        tagsChange:async function(vote){
+            var ret= await axios.post("/api/tagsChange", vote);
+        },
         addVote:async function(){
             var ret= await axios.post("/api/voteAdd");
             this.votes.push(ret.data);
+        },
+        addTags:async function(){
+            var ret= await axios.post("/api/tagsAdd");
+            this.tags.push(ret.data);
         },
         messageToUser:async function(item){
             item.messageIsActive=!item.messageIsActive;
@@ -363,7 +381,12 @@ var app=new Vue({
             }
             if(this.sect==8){
                 var ret=await axios.get("/api/votes");
-                this.votes=ret.data;
+                this.votes=ret.data.votes;
+                setTimeout(()=>{ this.showLoader=false;},200)
+            }
+            if(this.sect==9){
+                var ret=await axios.get("/api/tags");
+                this.tags=ret.data;
                 setTimeout(()=>{ this.showLoader=false;},200)
             }
         }

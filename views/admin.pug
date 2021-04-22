@@ -15,6 +15,7 @@ html
           .aminMenuItem(v-on:click="sect=2" v-bind:class="{active:sect==2}" v-show="chekDisable(2)") Вопросы
           .aminMenuItem(v-on:click="sect=1" v-bind:class="{active:sect==1}" v-show="chekDisable(1)") Чат
           .aminMenuItem(v-on:click="sect=8" v-bind:class="{active:sect==8}" v-show="chekDisable(8)") Голосования
+          .aminMenuItem(v-on:click="sect=9" v-bind:class="{active:sect==9}" v-show="chekDisable(8)") Теги
           .aminMenuItem(v-on:click="sect=0" v-bind:class="{active:sect==0}" v-show="chekDisable(0)") Пользователи
           .aminMenuItem(v-on:click="sect=4" v-bind:class="{active:sect==4}" v-show="chekDisable(4)") Статистика
           .aminMenuItem(v-on:click="sect=3" v-bind:class="{active:sect==3}" v-show="chekDisable(3)") Контент
@@ -206,6 +207,25 @@ html
                   .adminSpkItemWr
                   .adminSpkItemPosition
                     button(v-on:click="addVote()") Добавить голосование
+        .adminSect(v-if="sect==9" )
+          .adminSectLoader.loaderWr(v-if="showLoader")
+            .loader
+            .loaderText идет загрузка...
+          .adminBody(v-show="!showLoader")
+            .adminSectTitle Теги ({{tags.length}})
+              .adminSpkItem(v-for="item in tags")
+                .adminSpkItemPosition
+                  input(style="margin-left:20px; width:calc(100% - 100px)" placeholder="Вопрос для голосования" v-model="item.title" v-on:change="tagsChange(item)")
+
+                  div(style="margin-top:10px")
+                      button( v-if="!item.isactive" style="cursor:pointer;" v-on:click="tagsStart(item)") Запустить
+                      button( style="color:white;background:green;cursor:pointer" v-on:click="tagsStart(item)" v-else) Остановть
+                      button( v-if="!item.iscompl" style="cursor:pointer" v-on:click="tagsShow(item)") Показать результаты
+                      button( style="color:white;background:green;cursor:pointer" v-on:click="tagsShow(item)" v-else) Скрыть результаты
+              .adminSpkItem
+                .adminSpkItemWr
+                .adminSpkItemPosition
+                  button(v-on:click="addTags()") Добавить теги
 
 
 

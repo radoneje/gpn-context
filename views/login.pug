@@ -3,7 +3,7 @@ html
     head
        include meta
     body()
-        .underWork#app(style="overflow-y:scroll" v-on:click="showDeptDialog=false")
+        .underWork#app(style="overflow-x:hidden;" v-on:click="showDeptDialog=false")
             .loginMain
                 .logoWr
                     .loginCenter
@@ -18,7 +18,7 @@ html
                 .loginWr
                     .loginTitle Регистрация
                     form.loginForm(method="POST")
-                            input.regInput#finput(placeholder="ВАШЕ ИМЯ" + "*" v-model="user.f" v-on:change="checkf(user.f)" onkeypress="if(event.keyCode==13) document.getElementById('iinput').focus()")
+                            input.regInput#finput(placeholder="ВАШЕ ИМЯ" + "*" v-model="user.f" v-on:change="checkf(user.f)" onkeypress="if(event.keyCode==13) document.getElementById('codeinput').focus()")
                             .regInputError
                                 .regInputErrorTitle(v-bind:class="{active:err.f}") Поле должно быть заполнено корректно
                             input.regInput#codeinput(type="text" placeholder="КОД-ПАРОЛЬ" + "*" v-model="user.code" v-on:change="checkCode(user.code)")

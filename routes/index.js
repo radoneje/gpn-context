@@ -43,7 +43,7 @@ router.get('/', async (req, res, next) =>{
   res.redirect("/index/ru")
 
 });
-/*router.get('/index/:lang?', async (req, res, next) =>{
+router.get('/index/:lang?', async (req, res, next) =>{
   if(!req.params.lang)
     req.params.lang="ru"
   req.params.lang=req.params.lang.toLowerCase();
@@ -54,10 +54,10 @@ router.get('/', async (req, res, next) =>{
   var speakers=await req.knex.select("*").from("t_cbrf_spk").orderBy("sortOrder")
   //res.redirect("/login/ru")
       // res.sendStatus(404)
-  res.render('start')
- // res.render('index', {  lang:req.params.lang, speakers:speakers, site:content[0].site, content:content[0].content });
+      // res.render('start')
+ res.render('index', {  lang:req.params.lang, speakers:speakers, site:content[0].site, content:content[0].content });
 
-});*/
+});
 
 router.get('/login/:lang?', async (req, res, next) =>{
   //return res.render('start');
@@ -109,6 +109,15 @@ router.get('/zoom/:id', async (req, res, next) =>{
   res.redirect(ret[0].value)
 
 });
+router.get('/tagsres/:id',  async (req, res, next) =>{
+  var vv=await req.knex.select('val', req.knex.raw('count(*)')).from('t_cbrf_tagsanswers').where({tagsid:req.params.id}).groupBy('val').havingRaw("val IS NOT null");
+  var tag=await req.knex.select('id','title').from('t_cbrf_tags').where({id:req.params.id})
+  if(tag.length==0)
+    return res.sendStatus(404);
+  console.log("tags", tag)
+
+  res.render("tagsres",{title:"results", arr:JSON.stringify(vv),tag:tag[0]})
+})
 
 
 module.exports = router;
