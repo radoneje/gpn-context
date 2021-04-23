@@ -418,6 +418,21 @@ router.post('/unvote', userLogin, async(req, res, next) =>{
 
 
 
+router.post("/qLike",userLogin, async (req, res, next) => {
+  var r = await req.knex.select("*").from("t_cbrf_q").where({id:req.body.id});
+  if(r.length<1)
+    res.sendStatus(404)
+  var rr=await req.knex("t_cbrf_q").update({likes:r[0].likes+1},"*").where({id:req.body.id});
+  res.json({likes:rr[0].likes});
+})
+router.post("/qUnLike",userLogin, async (req, res, next) => {
+  var r = await req.knex.select("*").from("t_cbrf_q").where({id:req.body.id});
+  if(r.length<1)
+    res.sendStatus(404)
+  var rr=await req.knex("t_cbrf_q").update({likes:r[0].likes-1},"*").where({id:req.body.id});
+  res.json({likes:rr[0].likes});
+})
+
 router.post('/voteAdd', adminLogin,async(req, res, next) =>{
   var ret=await req.knex("t_cbrf_vote").insert({},"*");
   ret[0].answers=await req.knex("t_cbrf_voteanswers").insert([{voteid:ret[0].id},{voteid:ret[0].id}],"*");

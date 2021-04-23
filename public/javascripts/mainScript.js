@@ -19,6 +19,26 @@ var pgm=new Vue({
         state:{q:true, chat:true}
     },
     methods:{
+        qLike:async function(item){
+                if(!localStorage.getItem("qLike"+item.id)) {
+                    var ret=await axios.post("/api/qLike", {id: item.id})
+                    localStorage.setItem("qLike" + item.id, true);
+                    this.q.forEach(q=>{
+                        if(q.id==item.id)
+                            q.likes=ret.data.likes;
+                    })
+                }
+                else {
+                    var ret=await axios.post("/api/qUnLike", {id: item.id})
+                    localStorage.removeItem ("qLike" + item.id);
+                    this.q.forEach(q=>{
+                        if(q.id==item.id)
+                            q.likes=ret.data.likes;
+
+                    })
+                }
+
+        },
         tagsResShow:function(item){
             window.open('/tagsres/'+item.id)
         },
