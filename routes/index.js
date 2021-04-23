@@ -12,7 +12,7 @@ router.get('/admin', async (req, res, next) =>{
 
 router.post('/admin', async (req, res, next) =>{
   if(req.body.l!="editor" || req.body.p!="dfczgegrby" )
-    res.render('adminlogin', { title: 'admin' });
+    res.render('adminLogin', { title: 'admin' });
   else
   {
     req.session.admin=true;
@@ -29,7 +29,7 @@ router.get('/moderator', async (req, res, next) =>{
 
 router.post('/moderator', async (req, res, next) =>{
   if(req.body.l!="editor" || req.body.p!="dfczgegrby" )
-    res.render('adminlogin', { title: 'admin' });
+    res.render('adminLogin', { title: 'admin' });
   else
   {
     req.session.admin=true;
