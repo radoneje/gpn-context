@@ -243,7 +243,7 @@ var pgm=new Vue({
                     objDiv.scrollTop = objDiv.scrollHeight;
             }, 0)
         },
-        playerSect:function () {
+        playerSect: function () {
             setTimeout(() => {
                 var objDiv = document.getElementById("qBox");
                 if (objDiv != null)
@@ -252,6 +252,7 @@ var pgm=new Vue({
                 if (objDiv != null)
                     objDiv.scrollTop = objDiv.scrollHeight;
             }, 0)
+        },
     },
     mounted:async function () {
         try {
