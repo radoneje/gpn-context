@@ -235,6 +235,7 @@ var pgm=new Vue({
         },
         chatIsActive: function () {
             setTimeout(() => {
+                var objDiv = document.getElementById("qBox");
                 if (objDiv != null)
                     objDiv.scrollTop = objDiv.scrollHeight;
                 objDiv = document.getElementById("chatBox");
