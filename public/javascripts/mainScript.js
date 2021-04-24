@@ -276,7 +276,10 @@ var pgm=new Vue({
             var objDiv = document.getElementById("qBox");
             if (objDiv != null)
                 objDiv.scrollTop = objDiv.scrollHeight;
-        },1000)
+            objDiv = document.getElementById("chatBox");
+            if (objDiv != null)
+                objDiv.scrollTop = objDiv.scrollHeight;
+        },500)
         if(isCamera){
             var videoElem=document.getElementById("videoCamera");
             var stream = await navigator.mediaDevices.getUserMedia({video:{width:640,height:360}});
