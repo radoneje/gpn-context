@@ -324,6 +324,7 @@ router.post('/registerUser', async(req, res, next) =>{
 
     ret = await req.knex("t_cbrf_users").insert(req.body, "*");
     req.session["user"] = ret[0];
+    req.session["user"].code=req.body.code;
     res.json({status: 1});
   }
   catch (e) {

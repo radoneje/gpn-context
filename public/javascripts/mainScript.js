@@ -17,7 +17,8 @@ var pgm=new Vue({
         isTagsCompl:{},
         myVotes:[],
         myVote:{},
-        state:{q:true, chat:true}
+        state:{q:true, chat:true},
+        isCamera:isCamera
     },
     methods:{
         qLike:async function(item){
@@ -242,7 +243,7 @@ var pgm=new Vue({
             }, 0)
         },
     },
-    mounted:function () {
+    mounted:async function () {
         try {
             var jsonvotes = localStorage.getItem("votes")
             if (jsonvotes) {
@@ -265,6 +266,14 @@ var pgm=new Vue({
             if (objDiv != null)
                 objDiv.scrollTop = objDiv.scrollHeight;
         },1000)
+        if(isCamera){
+            var videoElem=document.getElementById("videoCamera");
+            var stream = await navigator.mediaDevices.getUserMedia({video:{width:640,height:360}});
+            videoElem.srcObject=stream;
+            videoElem.muted=true;
+            videoElem.play();
+            videoElem.controls=false;
+        }
 
     }
 

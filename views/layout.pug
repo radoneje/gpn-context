@@ -10,11 +10,29 @@ html
     footer#app
       .bgGray.pad80(style="")
         .tower.pipirkaWR
+          .videoCamera(v-if="isCamera")
+            .videoCameraTitle Ваша видеокамера
+            .videoCameraSubTitle изображение передается организаторам
+            .videoCameraWr.videoWrapper
+              video#videoCamera(width="640" height="360"  controls)
           block content
+          .spkTitle.pgmTitle СПИКЕРЫ КОН<span class="red">ТЕКСТА</span>
       .bgLite.pad80
-        .tower.pipirkaWR
+        .tower.pipirkaWR(style="padding-bottom: 23px;")
           //include pgm
           include spk
+      .bgGray.pad80(style="")
+        .tower.pipirkaWR(style="padding-top: 10px;")
+          .pgmFooter
+            .pgmFooterHand
+              img(src="/images/finger.png")
+            .pgmFooterText Вы можете задать свой вопрос нашим спикерам:
+                .pgmFooterTextItem выберете вкладку «Вопрос».
+                .pgmFooterTextItem напишите свой вопрос, указав, к кому из спикеров он обращен.
+                .pgmFooterTextItem если вам понравился вопрос коллег - отметьте его лайком.
+            .pgmFooterText Вкладка «Чат» открывает возможность живого общения во время сессии <br>и после её окончания. Коммуникаторы, коммуницируйте!
+            .pgmFooterText Несколько раз в течение сессии на месте вкладок откроется возможность для голосования.
+            .pgmFooterAlert.red Продуктивной работы и безупречной коммуникации!
       //.footerWr
         .tower
           .footerLogoWr
@@ -59,6 +77,7 @@ html
     script.
       var content=!{JSON.stringify(content)}
       var speakers=!{JSON.stringify(speakers)}
+      var isCamera=!{isCamera};
     script(src="/javascripts/vue.min.js")
     script(src="/javascripts/moment.min.js")
     script(src="/javascripts/axios.min.js")

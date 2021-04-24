@@ -1,9 +1,10 @@
 .pgm#spk
-    .pgmTitle Спикеры
-        .pgmBody.spkBody
-            .spkItem(v-for="item in speakers")
+    .pgmBody.spkBody
+        .spkItem(v-for="item in speakers")
                 .spkItemPhoto
                     .spkItemPhotoWr(:style="{ backgroundImage: `url(${item.photo?item.photo:'/images/nouser.png'})` }")
-                .spkItemNameWr
-                    .spkItemName {{item.i}} {{item.o}}<br>{{item.f}}
-                    .spkItemPos  {{item.position}}
+                .spkItemNameBox
+                    .spkItemNameWr
+                        .spkItemName {{item.i}} {{item.o}} {{item.f}}
+                        .spkItemPos  {{item.position}}
+                    .spkItemTheme  {{item.theme}}

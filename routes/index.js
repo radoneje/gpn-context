@@ -44,6 +44,8 @@ router.get('/', async (req, res, next) =>{
 
 });
 router.get('/index/:lang?', async (req, res, next) =>{
+  if(!req.session["user"])
+    res.redirect("/login")
   if(!req.params.lang)
     req.params.lang="ru"
   req.params.lang=req.params.lang.toLowerCase();
@@ -55,7 +57,7 @@ router.get('/index/:lang?', async (req, res, next) =>{
   //res.redirect("/login/ru")
       // res.sendStatus(404)
       // res.render('start')
- res.render('index', {  lang:req.params.lang, speakers:speakers, site:content[0].site, content:content[0].content });
+ res.render('index', {  lang:req.params.lang, speakers:speakers, site:content[0].site, content:content[0].content, isCamera:req.session["user"].code=="34705428" });
 
 });
 

@@ -124,6 +124,8 @@ html
                   .adminSpkItemPosition
                     input(v-model="item.position" placeholder="должность")
                   .adminSpkItemPosition
+                    input(v-model="item.theme" placeholder="тема выступления")
+                  .adminSpkItemPosition
                     button(v-on:click="editSpk(item)") Сохранить изменения
                     button(v-on:click="repositionSpk(item, -15)") Выше
                     button(v-on:click="repositionSpk(item, +15)") Ниже
