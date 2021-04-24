@@ -18,7 +18,7 @@ html
                 .loginWr
                     .loginTitle Регистрация
                     form.loginForm(method="POST")
-                            input.regInput#finput(placeholder="ВАШЕ ИМЯ" + "*" v-model="user.f" v-on:change="checkf(user.f)" onkeypress="if(event.keyCode==13) document.getElementById('codeinput').focus()")
+                            input.regInput#finput(placeholder="ПРЕДСТАВЬТЕСЬ" + "*" v-model="user.f" v-on:change="checkf(user.f)" onkeypress="if(event.keyCode==13) document.getElementById('codeinput').focus()")
                             .regInputError
                                 .regInputErrorTitle(v-bind:class="{active:err.f}") Поле должно быть заполнено корректно
                             input.regInput#codeinput(type="text" placeholder="КОД-ПАРОЛЬ" + "*" v-model="user.code" v-on:change="checkCode(user.code)")
@@ -33,9 +33,9 @@ html
                                     .regBtnLoaderText Подождите, идет проверка
                             .promice Техническая поддержка +7 (495) 260-19-93
                             //.promice При входе Вы даете <a href="/images/promice.pdf" target="_blank"> cогласие на обработку и передачу своих персональных данных.</a>
-
-                .pupirka.bounceIn
                 .finger.bounceInDown
+        .loginBottom
+        .pupirka.bounceIn
         script.
             var dept=!{JSON.stringify(dept)}
             document.addEventListener('touchmove', function (event) {

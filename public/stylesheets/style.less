@@ -657,6 +657,7 @@ h2{
   width: 100vw;
   padding: 9px 16px;
   box-sizing: border-box;
+  font-family: 'DINPro Cond';
 }
 h1{
   position: absolute;
@@ -668,7 +669,7 @@ h1{
   font-size: 128px;
   line-height: 156px;
   /* identical to box height */
-
+  font-family: 'DINPro Cond';
   letter-spacing: 0.01em;
 
 }
@@ -784,6 +785,14 @@ h1{
   height: 100%;
   content: "";
   background-image: url(/images/bg.svg);
+}
+.loginBottom{
+  background: #EFEFE0;
+  position: absolute;
+  bottom: 0;
+  height: ~"calc((100% - 514px) / 2)";
+  width: 50%;
+  left: 50%;
 }
 .pgm{
   padding-top:48px;
@@ -1003,7 +1012,7 @@ margin-right: .5em;
   font-size: 120px;
   line-height: 146px;
   /* identical to box height */
-
+  font-family: 'DINPro Cond';
   letter-spacing: 0.01em;
   text-transform: uppercase;
   text-align: right;
@@ -1014,16 +1023,17 @@ margin-right: .5em;
   color:@white;
   font-style: italic;
   font-weight: bold;
-  font-size: 40px;
-  line-height: 47px;
+  font-size: 42px;
+  line-height: 48px;
   letter-spacing: 0.01em;
   margin-right: 60px;
+  font-family: 'DINPro Cond';
 }
 .loginH2Box{
   text-align: left;
-  padding: 16px 68px;
+  padding: 16px 18px;
   float: right;
-  text-align: right;
+  text-align: left;
 
 }
 .loginCenter{
@@ -1043,7 +1053,7 @@ margin-right: .5em;
   border-radius: 0;
   padding-left: 119px;
   padding-top: 120px;
-  padding-bottom: 354px;
+  padding-bottom: 20px;
 
 }
 .loginForm{
@@ -1058,7 +1068,7 @@ margin-right: .5em;
   font-size: 56px;
   line-height: 68px;
   /* identical to box height */
-
+  font-family: 'DINPro Cond';
   text-transform: uppercase;
 }
 .regInput{
@@ -1162,7 +1172,7 @@ background-color: @litegray;
   color: @gray;
 }
 .regBtn{
-  width: 100%;
+  width: max-content;
   font-size: 18px;
   color: white;
   background: @red;
@@ -1171,20 +1181,21 @@ background-color: @litegray;
   cursor: pointer;
   height: 48px;
   border: none;
-  margin-top:12px;
+  margin-top:32px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color .5s ease;
-  cursor: pointer;
   position: relative;
+  padding: 0 20px;
+  font-weight: bold;
 }
 .pupirka{
   position: fixed;
   width: 1135px;
   left: ~"calc(50% - (1140px / 2))";
-  top: 70%;
-  height: 30%;
+  bottom: 0;
+  height: 14%;
   background-image: url("/images/bg.svg");
 }
 .promice{
@@ -1829,15 +1840,17 @@ border-radius: 0 8px 8px 0 ;
 }
 .finger{
   position: fixed;
-  top: -81px;
+  top: -4vh;
   left: 50%;
  // animation: finger 1s ;
 
-  width: 300px;
-  height: 300px;
+  width: 33vh;
+  height: 33vh;
+  width: ~"calc(100vh - 480px)";
   background-image: url("/images/finger.png");
   background-size: contain;
   background-repeat: no-repeat;
+
 }
 .bounceInLeft {
   -webkit-animation-name: bounceInLeft;
@@ -1991,7 +2004,7 @@ border-radius: 0 8px 8px 0 ;
   }
   h2{
     top: 195px;
-    left: 434px;
+    left: 429px;
   }
   .spkItemName{
     font-size: 18px;
@@ -2010,18 +2023,14 @@ border-radius: 0 8px 8px 0 ;
   .pupirka{
     left: ~"calc(50% - (900px / 2))";
     max-width: 900px;
-    top: 77%;
-    height: 23%;
+    top: 82%;
+    height: 18%;
   }
-  .finger{
-    width: 200px;
-    height: 200px;
-    top:-24px;
-  }
+
 }
 @media (max-width:1919px) {
   .loginH1 {
-    font-size: 91px;
+   // font-size: 91px;
   }
 }
 @media (max-width:1366px) {
@@ -2030,6 +2039,7 @@ border-radius: 0 8px 8px 0 ;
     padding-bottom: 175px;
 
   }
+
 
 
 }
@@ -2065,7 +2075,7 @@ border-radius: 0 8px 8px 0 ;
     line-height: 24px;
     float: left;
     text-align: left;
-    padding: 16px 20px;
+    padding: 16px 12px;
   }
   .loginCenter{
     margin: 0 10px;
@@ -2123,6 +2133,9 @@ border-radius: 0 8px 8px 0 ;
     margin-bottom: 0;
     box-sizing: border-box;
     position: relative;
+  }
+  .loginBottom{
+    display: none;
   }
   .tower{
     padding: 0 20px
@@ -2347,6 +2360,16 @@ border-radius: 0 8px 8px 0 ;
   }
 }
 @media (max-width:425px) {
+  .finger {
+
+    width: 300px;
+    height: 300px;
+    top: 11px;
+    left: ~"calc(100% - 176px)";
+  }
+  .pupirka{
+    display: none;
+  }
   .mainLogo{
     top:-27px;
   }
