@@ -243,6 +243,15 @@ var pgm=new Vue({
                     objDiv.scrollTop = objDiv.scrollHeight;
             }, 0)
         },
+        playerSect:function () {
+            setTimeout(() => {
+                var objDiv = document.getElementById("qBox");
+                if (objDiv != null)
+                    objDiv.scrollTop = objDiv.scrollHeight;
+                objDiv = document.getElementById("chatBox");
+                if (objDiv != null)
+                    objDiv.scrollTop = objDiv.scrollHeight;
+            }, 0)
     },
     mounted:async function () {
         try {
