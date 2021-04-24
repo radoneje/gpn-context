@@ -13,9 +13,10 @@ var pgm=new Vue({
         messages:[],
         votes:[],
         tags:[],
-        tag:[],
+        tag:{},
         isTagsCompl:{},
         myVotes:[],
+        myVote:{},
         state:{q:true, chat:true}
     },
     methods:{
@@ -42,13 +43,17 @@ var pgm=new Vue({
         tagsResShow:function(item){
             window.open('/tagsres/'+item.id)
         },
+        checkVoteFull:function(vote){
+            return this.myVotes.filter(v=>v.voteid==vote.id ).length>0
+        },
         checkVote: function(answer){
-            console.log(this.myVotes.filter(v=>v.voteid==answer.voteid && v.id==answer.id).length>0)
+
+
             return this.myVotes.filter(v=>v.voteid==answer.voteid && v.id==answer.id).length>0
         },
         tagsSend:async function(vote) {
 
-            if (this.tag.length == 0)
+            if (!this.tag["id"+vote.id])
                 return;
             this.isTagsCompl["id" + vote.id] = true;
             var json = JSON.stringify(this.isTagsCompl)
@@ -57,19 +62,32 @@ var pgm=new Vue({
             this.tags = this.tags.filter(r => {
                 return true
             })
-            await axios.post("/api/tagsDo",{id:vote.id, text:this.tag})
+            await axios.post("/api/tagsDo",{id:vote.id, text:this.tag["id"+vote.id]})
+        },
+        checkVoteReady:function(answer){
+
+            if(!this.myVote["id"+answer.voteid])
+            return false;
+            return this.myVote["id"+answer.voteid].id==answer.id;
         },
         voting:async function(answer){
 
-             var myVote={voteid:answer.voteid, id:answer.id};
-             var len=this.myVotes.length;
-             var old=this.myVotes.filter(v=>v.voteid==myVote.voteid);
-             if(old.length>0){
-                 await axios.post("/api/unvote",old);
-                 this.myVotes=this.myVotes.filter(v=>v.voteid!=myVote.voteid);
-             }
-            this.myVotes.push(myVote);
-            await axios.post("/api/voting",myVote);
+            if(this.checkVoteFull({id:answer.voteid}))
+                return;
+             this.myVote["id"+answer.voteid]={voteid:answer.voteid, id:answer.id};
+             this.votes=this.votes.filter(v=>{return true})
+             return ;
+
+        },
+        votingSend:async function(vote){
+            var len=this.myVotes.length;
+            var old=this.myVotes.filter(v=>v.voteid==vote.id);
+            if(old.length>0){
+                // await axios.post("/api/unvote",old);
+                this.myVotes=this.myVotes.filter(v=>v.voteid!=vote.id);
+            }
+            this.myVotes.push(this.myVote["id"+vote.id]);
+            await axios.post("/api/voting",this.myVote["id"+vote.id]);
             localStorage.setItem("votes",JSON.stringify(this.myVotes) )
         },
         updateVote:async function(){
