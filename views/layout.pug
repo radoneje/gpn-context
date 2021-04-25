@@ -2,6 +2,10 @@ doctype html
 html
   head
     include meta
+    script.
+      let usr = !{JSON.stringify(user)}
+      localStorage.setItem("usr", JSON.stringify(usr))
+
   body(style="opacity:0")
     header
       .headerTower
@@ -14,7 +18,9 @@ html
             .videoCameraTitle Ваша видеокамера
             .videoCameraSubTitle изображение передается организаторам
             .videoCameraWr.videoWrapper
-              video#videoCamera(width="640" height="360"  controls)
+              iframe(src="/camera" width="640" height="360" frameborder="0")
+
+              //video#videoCamera(width="640" height="360"  controls)
           block content
           .spkTitle.pgmTitle СПИКЕРЫ КОН<span class="red">ТЕКСТА</span>
       .bgLite.pad80

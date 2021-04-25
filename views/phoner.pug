@@ -1,0 +1,35 @@
+html
+    head
+        include meta
+
+    body
+        #app
+            #previewVideo(v-if="mixers.length>0")
+                iframe(id='fp_embed_player' :src="getIframe()" marginwidth='0' marginheight='0' frameborder='0' width='640' height='360' scrolling='no' allowfullscreen='allowfullscreen')
+
+            .sWr
+                .streamBox
+                    button.streamItemDo( v-on:click="reloadMixers()") обновить
+                    .streamItem(v-for="item in streams")
+                        .streamItemTitle {{item.user.f}} {{item.user.i}}
+                        button.streamItemDo(v-if="" v-on:click="GetSnapshot(item)") Снепшот
+                        button.streamItemDo(v-if="!item.inMixer" v-on:click="addToMixer(item)") Добавить в микшер
+
+                .mBox
+                    .mixerBoxHead
+                        .regBtn(v-if="mixers.length==0" v-on:click="startMixer()") Запустить микшер
+                        button.streamItemDo(v-else v-on:click="stopMixer()") &nbsp;Удалить микшер
+                        .mixerItemTitle(v-if="mixers.length>0") {{mixers[0].localStreamName}}
+                    .mixerBox
+                        .mixerItem(v-for="mixer in mixers")
+
+                                .streamItem(v-for="item in streams.filter(s=>s.inMixer)")
+                                    .streamItemTitle {{item.user.f}} {{item.user.i}}
+                                    button.streamItemDo(v-if="item.inMixer" v-on:click="delFromMixer(item)") Удалить из микшера
+
+
+        script(src="/javascripts/vue.min.js")
+        script(src="/javascripts/moment.min.js")
+        script(src="/javascripts/axios.min.js")
+        script(src="/javascripts/flashphoner.js")
+        script(src="/javascripts/multiscreenScript.js")

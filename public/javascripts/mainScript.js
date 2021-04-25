@@ -280,14 +280,7 @@ var pgm=new Vue({
             if (objDiv != null)
                 objDiv.scrollTop = objDiv.scrollHeight;
         },500)
-        if(isCamera){
-            var videoElem=document.getElementById("videoCamera");
-            var stream = await navigator.mediaDevices.getUserMedia({video:{width:640,height:360}});
-            videoElem.srcObject=stream;
-            videoElem.muted=true;
-            videoElem.play();
-            videoElem.controls=false;
-        }
+
 
     }
 

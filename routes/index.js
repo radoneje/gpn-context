@@ -36,7 +36,17 @@ router.post('/moderator', async (req, res, next) =>{
     res.render('admin', { title: 'admin' ,disable:[1,0,3,5,6,7] });
   }
 });
+router.get('/camera', async (req, res, next) =>{
+    res.render('camera', { title: 'admin' })
+});
+router.get('/phoner', async (req, res, next) =>{
+  if(req.session.admin)
+    res.render('phoner', { title: 'admin' })
+  else
+    res.render('adminLogin', { title: 'admin' });
 
+
+});
 router.get('/', async (req, res, next) =>{
   return res.render('start');
   //res.render('work', { title: 'under constaction' });
@@ -57,7 +67,7 @@ router.get('/index/:lang?', async (req, res, next) =>{
   //res.redirect("/login/ru")
       // res.sendStatus(404)
       // res.render('start')
- res.render('index', {  lang:req.params.lang, speakers:speakers, site:content[0].site, content:content[0].content, isCamera:req.session["user"].code=="34705428" });
+ res.render('index', {  lang:req.params.lang, speakers:speakers, site:content[0].site, content:content[0].content, isCamera:req.session["user"].code=="34705428" , user:req.session["user"]});
 
 });
 

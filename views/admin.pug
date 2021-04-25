@@ -18,6 +18,7 @@ html
           .aminMenuItem(v-on:click="sect=9" v-bind:class="{active:sect==9}" v-show="chekDisable(8)") Теги
           .aminMenuItem(v-on:click="sect=0" v-bind:class="{active:sect==0}" v-show="chekDisable(0)") Пользователи
           .aminMenuItem(v-on:click="sect=4" v-bind:class="{active:sect==4}" v-show="chekDisable(4)") Статистика
+          .aminMenuItem(v-on:click="window.open('/phoner')" v-bind:class="{active:sect==10}" v-show="chekDisable(10)") Мультиэкран
           .aminMenuItem(v-on:click="sect=3" v-bind:class="{active:sect==3}" v-show="chekDisable(3)") Контент
           .aminMenuItem(v-on:click="sect=5" v-bind:class="{active:sect==5}" v-show="chekDisable(5)") Спикеры
           .aminMenuItem(v-on:click="sect=7" v-bind:class="{active:sect==7}" v-show="chekDisable(7)") Коды
