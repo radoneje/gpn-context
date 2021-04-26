@@ -354,10 +354,10 @@ router.get('/votes', async(req, res, next) =>{
   }
 
   let q=await req.knex.select("*").from("v_cbrf_q").orderBy("id", "desc").limit(10);
-  q.sort((a,b)=>{return b.id-a.id});
+  q.sort((a,b)=>{return a.id-b.id});
 
   let chat =await req.knex.select("*").from("v_cbrf_chat").orderBy("id", "desc").limit(10);
-  chat.sort((a,b)=>{return b.id-a.id});
+  chat.sort((a,b)=>{return a.id-b.id});
 
   res.json({
     votes:ret,
