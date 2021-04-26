@@ -93,6 +93,7 @@ router.get('/screen', async (req, res, next) =>{
   res.render("screen")
 })
 
+
 router.get('/badbrowser', async (req, res, next) =>{
   res.render("badbrowser")
 })
