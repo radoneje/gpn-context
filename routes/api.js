@@ -112,7 +112,10 @@ router.delete("/deleteAllQ",adminLogin, async(req, res, next)=> {
   var ret=await req.knex("t_cbrf_q").update({isDeleted:true}, "*")
   res.json(1);
 });
-
+router.delete("/deleteAllChat",adminLogin, async(req, res, next)=> {
+  var ret=await req.knex("t_cbrf_chat").update({isDeleted:true}, "*")
+  res.json(1);
+});
 
 
 router.get("/chat", adminLogin, async(req, res, next)=> {

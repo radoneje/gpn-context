@@ -252,6 +252,12 @@ var app=new Vue({
                 this.q=[];
             }
         },
+        deleteAllChat:async function(){
+            if(confirm("Вы уверены?")){
+                await axios.delete("/api/deleteAllChat");
+                this.chat=[];
+            }
+        },
         deleteChat:async function(item){
             if(!confirm("Вы действительно хотите удалить сообщение?"))
                 return false
