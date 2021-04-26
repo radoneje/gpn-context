@@ -350,12 +350,12 @@ router.get('/votes', async(req, res, next) =>{
   var tags=await req.knex.select("*").from("t_cbrf_tags").where({isDeleted:false}).orderBy("id");
   tags.answers;
   for(var tag of tags){
-    tags.answers=await req.knex.select("*").from("t_cbrf_tagsanswers").where({isDeleted:false}).orderBy("id");
+    tags.answers=await req.knex.select("*").from("t_cbrf_tagsanswers").where({isDeleted:false}).orderBy("id").limit(1000);
   }
 
-  let q=await req.knex.select("*").from("v_cbrf_q").orderBy("id");
+  let q=await req.knex.select("*").from("v_cbrf_q").orderBy("id", "desc").limit(10);
   q=q.filter(q=>!q.isDeleted);
-  let chat =await req.knex.select("*").from("v_cbrf_chat").orderBy("id");
+  let chat =await req.knex.select("*").from("v_cbrf_chat").orderBy("id", "desc").limit(10);
   chat=chat.filter(q=>!q.isDeleted);
   res.json({
     votes:ret,
