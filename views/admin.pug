@@ -83,8 +83,8 @@ html
                     .playerChatDate.btnWr
                       //.adminDeleteBtn(v-on:click="approveQ(item)" style="float:left; width:150px;text-align: center;" v-if="item.isReady") Отменить
                       //.adminDeleteBtn(v-on:click="approveQ(item)" style="float:left; width:150px;text-align: center;"  v-else) Принять сообщение
-                      .adminDeleteBtn(v-on:click="spkQ(item)" v-if="item.isSpk && item.isReady" style="float:left;color:gray") Показать спикеру
-                      .adminDeleteBtn(v-on:click="spkQ(item)" style="float:left; background:red; color:white" v-if="!item.isSpk && item.isReady") Убрать от спикеры
+                      .adminDeleteBtn(v-on:click="spkQ(item)" v-if="item.isSpk" style="float:left;color:gray") Показать спикеру
+                      .adminDeleteBtn(v-on:click="spkQ(item)" style="float:left; background:red; color:white" v-if="!item.isSpk") Убрать от спикеры
                       .adminDeleteBtn(v-on:click="deleteQ(item)" style="float:right") удалить
                       div(style="clear:both")
             .adminDeleteBtn(v-on:click="deleteAllQ()") удалить все
