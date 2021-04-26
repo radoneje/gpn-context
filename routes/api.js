@@ -283,23 +283,17 @@ router.post('/aliveUser', userLogin, async(req, res, next)=> {
     })
   }
   let messages=await req.knex.select("message").from("t_cbrf_users").where({id:req.session.user.id, messageIsActive:true})
-  let q=await req.knex.select("*").from("v_cbrf_q").orderBy("id");
-  q=q.filter(q=>!q.isDeleted);
-  let chat =await req.knex.select("*").from("v_cbrf_chat").orderBy("id");
-
   if(!messages)
     messages=[];
-  messages=messages.filter(m=>{return m.message.length>0});
-
+    messages=messages.filter(m=>{return m.message.length>0});
   res.json({
     userid:req.session.user.id,
     date: new Date(),
-    messages:messages,
-    q,
-    chat,
-    state:(await req.knex.select("*").from("t_cbrf_state"))[0].val
+    messages:messages
   })
 });
+
+
 
 router.get('/count', function(req, res, next) {
   res.json(req.counter.length);
@@ -355,12 +349,18 @@ router.get('/votes', async(req, res, next) =>{
   for(var tag of tags){
     tags.answers=await req.knex.select("*").from("t_cbrf_tagsanswers").where({isDeleted:false}).orderBy("id");
   }
-  var r={
-    votes:ret,
-    tags:tags
-  };
 
-  res.json(r);
+  let q=await req.knex.select("*").from("v_cbrf_q").orderBy("id");
+  q=q.filter(q=>!q.isDeleted);
+  let chat =await req.knex.select("*").from("v_cbrf_chat").orderBy("id");
+  chat=chat.filter(q=>!q.isDeleted);
+  res.json({
+    votes:ret,
+    tags:tags,
+    q,
+    chat,
+    state:(await req.knex.select("*").from("t_cbrf_state"))[0].val
+  });
 
 })
 router.get('/tags', async(req, res, next) =>{

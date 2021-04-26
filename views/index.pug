@@ -50,7 +50,7 @@ block content
             .playerChatWr(v-if="playerSect==1" v-show="state.q")
                 .playerChatPole#chatBox
                     .playerChatPoleWr
-                        .playerChatItem(v-for="item in chat" v-if="")
+                        .playerChatItem(v-for="item in chat" )
                             .playerChatTitle  {{item.f}} {{item.i}}
                             .playerChatText {{item.text}}
                             .playerChatDate {{moment(item.date).format('HH:mm')}}

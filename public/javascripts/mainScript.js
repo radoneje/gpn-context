@@ -91,30 +91,18 @@ var pgm=new Vue({
             await axios.post("/api/voting",this.myVote["id"+vote.id]);
             localStorage.setItem("votes",JSON.stringify(this.myVotes) )
         },
-        updateVote:async function(){
+        userState:async function(){
             try {
                 var ret = await axios.get("/api/votes");
-                this.votes = ret.data.votes;
-                this.tags = ret.data.tags;
-            }
-            catch (e) {
-                console.warn(e)
-            }
-            setTimeout(()=>{this.updateVote()},20*1000)
-
-        },
-        updateChat:async function(){
-
-            try {
-                var ret = await axios.post("/api/aliveUser");
                 this.chat = ret.data.chat;
                 this.q = ret.data.q;
                 this.state = ret.data.state;
-                this.messages=ret.data.messages;
+                this.votes = ret.data.votes;
+                this.tags = ret.data.tags;
+
                 var objDiv = document.getElementById("qBox");
                 if(objDiv!=null)
                     objDiv.scrollTop = objDiv.scrollHeight;
-
                 objDiv = document.getElementById("chatBox");
                 if(objDiv!=null)
                     objDiv.scrollTop = objDiv.scrollHeight;
@@ -122,7 +110,19 @@ var pgm=new Vue({
             catch (e) {
                 console.warn(e)
             }
-            setTimeout(()=>{this.updateChat()},20*1000)
+            setTimeout(()=>{this.userState()},10*1000)
+
+        },
+        aliveUser:async function(){
+
+            try {
+                var ret = await axios.post("/api/aliveUser");
+                this.messages=ret.data.messages;
+            }
+            catch (e) {
+                console.warn(e)
+            }
+            setTimeout(()=>{this.aliveUser()},60*1000)
 
 
         },
@@ -270,8 +270,8 @@ var pgm=new Vue({
         }
         setTimeout(()=>{   document.body.style.opacity=1;
         },500)
-        this.updateChat();
-        this.updateVote();
+        this.aliveUser();
+        this.userState();
         setTimeout(()=>{
             var objDiv = document.getElementById("qBox");
             if (objDiv != null)
