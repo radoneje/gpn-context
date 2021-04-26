@@ -120,8 +120,13 @@ router.delete("/deleteAllChat",adminLogin, async(req, res, next)=> {
 
 router.get("/chat", adminLogin, async(req, res, next)=> {
   var ret={};
-  ret.q=await req.knex.select("*").from("v_cbrf_q").orderBy("id");;
-  ret.chat=await req.knex.select("*").from("v_cbrf_chat").orderBy("id");
+  ret.q=await req.knex.select("*").from("v_cbrf_q").orderBy("id", "desc").limit(500);
+  ret.q.sort((a,b)=>{return a.id-b.id});
+
+  ret.chat =await req.knex.select("*").from("v_cbrf_chat").orderBy("id", "desc").limit(500);
+  ret.chat.sort((a,b)=>{return a.id-b.id});
+
+
   ret.state=(await req.knex.select("*").from("t_cbrf_state"))[0].val;
   return res.json(ret);
 });
