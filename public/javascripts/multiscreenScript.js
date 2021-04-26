@@ -125,7 +125,7 @@ var pgm=new Vue({
 function startPreview(){
 
      var remoteVideo = document.getElementById("previewVideo");
-    remoteVideo.innerHTML="<iframe id='fp_embed_player' src='https://wowza02.onevent.online:8888/embed_player?urlServer=wss://wowza02.onevent.online:8443&streamName="+pgm.mixers[0].localStreamName+"&mediaProviders=WSPlayer' marginwidth='0' marginheight='0' frameborder='0' width='100%' height='100%' scrolling='no' allowfullscreen='allowfullscreen'></iframe>"
+    remoteVideo.innerHTML="<iframe id='fp_embed_player' src='https://wowza02.onevent.online:8888/embed_player?urlServer=wss://wowza02.onevent.online:8443&streamName="+pgm.mixers[0].localStreamName+"&autoplay=true&mediaProviders=WSPlayer' marginwidth='0' marginheight='0' frameborder='0' width='100%' height='100%' scrolling='no' allowfullscreen='allowfullscreen'></iframe>"
 
 
 }

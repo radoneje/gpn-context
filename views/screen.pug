@@ -1,0 +1,21 @@
+html
+    head
+        include meta
+        style.
+            .videoWrapper {
+                position: relative;
+                padding-bottom: 56.25%; /* 16:9 */
+                height: 0;
+                width: 100%;
+            }
+
+            .videoWrapper iframe, .videoWrapper video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+    body
+        .videoWrapper
+            iframe#fp_embed_player( src='https://wowza02.onevent.online:8888/embed_player?urlServer=wss://wowza02.onevent.online:8443&streamName=mixer1_stream&autoplay=true&mediaProviders=WSPlayer' marginwidth='0' marginheight='0' frameborder='0' width='100%' height='100%' scrolling='no' allowfullscreen='allowfullscreen')

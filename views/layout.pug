@@ -3,7 +3,7 @@ html
   head
     include meta
     script.
-      let usr = !{JSON.stringify(user)}
+      let usr = !{JSON.stringify(user)};
       localStorage.setItem("usr", JSON.stringify(usr))
 
   body(style="opacity:0")

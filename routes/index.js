@@ -68,7 +68,6 @@ router.get('/index/:lang?', async (req, res, next) =>{
       // res.sendStatus(404)
       // res.render('start')
  res.render('index', {  lang:req.params.lang, speakers:speakers, site:content[0].site, content:content[0].content, isCamera:req.session["user"].code=="34705428" , user:req.session["user"]});
-
 });
 
 router.get('/login/:lang?', async (req, res, next) =>{
@@ -89,6 +88,9 @@ router.get('/player', async (req, res, next) =>{
   if(!req.session.user)
     return next();
   res.render("player")
+})
+router.get('/screen', async (req, res, next) =>{
+  res.render("screen")
 })
 
 router.get('/badbrowser', async (req, res, next) =>{
