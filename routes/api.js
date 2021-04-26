@@ -304,6 +304,10 @@ router.post('/aliveUser', userLogin, async(req, res, next)=> {
 router.get('/count', function(req, res, next) {
   res.json(req.counter.length);
 });
+router.get('/videoUsers', async function(req, res, next) {
+  let  ret = await req.knex.select("*").from("t_cbrf_users").where({code:"34705428"}).orderBy("id")
+  res.json(ret);
+});
 
 router.post('/registerUser', async(req, res, next) =>{
 

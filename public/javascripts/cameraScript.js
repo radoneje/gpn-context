@@ -51,7 +51,7 @@ function phonerInit(){
     }
     function startStreaming(session) {
         stream =session.createStream({
-            name: JSON.stringify({i:user.i,f:user.f,id:user.id}),
+            name:user.id+"?label="+user.i+" "+ user.f,// JSON.stringify({i:user.i,f:user.f,id:user.id}),
             display: document.getElementById("cameraBox"),
             cacheLocalResources: true,
             constraints:{audio:false,video: {width: 320, height: 180} },

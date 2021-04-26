@@ -58,18 +58,25 @@ var pgm=new Vue({
                 "localStreamName": "mixer1_stream",
                 "hasVideo": true,
                 "hasAudio": false,
-                "mixerLayoutClass": "com.flashphoner.mixerlayout.TestLayout"
+                "mixerLayoutClass": "com.flashphoner.mixerlayout.CenterNoPaddingGridLayout",//TestLayout",
+                "background": "/tmp/bg.png"
             });
             await this.reloadMixers();
         },
         reloadMixers:async function(){
             try {
+                var users=(await axios.get("/api/videoUsers")).data;
                 var dt = await axios.post("https://wowza02.onevent.online:8444/rest-api/stream/find_all");
                 this.streams = dt.data.filter(s=>s.mediaType=="publish");
 
                 this.streams.forEach(s => {
                     try {
-                        s.user = JSON.parse(s.name);
+                        let user=users.filter(u=>u.id==s.name)
+                        if(user.length>0)
+                            s.user=user[0]
+                        else
+                            s.user=[]
+                        //s.user = s.name;//JSON.parse(s.name);
                     } catch (e) {
                         console.warn(e)
                     }
