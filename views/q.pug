@@ -1,6 +1,6 @@
 .playerChatPoleWr
     .playerChatItem(v-for="item in q" )
-        .playerChatTitle <span class="adminDop"> {{moment(item.date).format('HH:mm')}} </span> {{item.f}} {{item.i}} {{item.o}} <span class="adminDop"> {{item.deptTitle}}</span>
+        .playerChatTitle <span class="adminDop"> {{moment(item.date).format('HH:mm')}} </span> {{item.f}} {{item.i}} {{item.o}} <span class="adminDop"> </span>
         .playerChatText {{item.text}}
         .playerChatDate {{moment(item.date).format('HH:mm')}}
     .playerChatItem(v-if="q.length==0")
