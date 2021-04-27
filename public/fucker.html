@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src = "/scripts/faker.min.js" type = "text/javascript"></script>
+    <script src = "/scripts/axios.min.js" type = "text/javascript"></script>
+</head>
+<body>
+    <script>
+       fi.then(()=>{console.log("complite")});
+       async function fi() {
+           var arr=[];
+           for(i=0; i<5000;i++){
+               arr.push(faker.name.firstName())
+           }
+           for(w of arr){
+               await axios.post("/api/tagsDo", {id:1, text:w})
+           }
+       }
+    </script>
+</body>
+</html>

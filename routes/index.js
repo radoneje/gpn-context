@@ -33,7 +33,7 @@ router.post('/moderator', async (req, res, next) =>{
   else
   {
     req.session.admin=true;
-    res.render('admin', { title: 'admin' ,disable:[1,0,3,5,6,7] });
+    res.render('admin', { title: 'admin' ,disable:[1,0,3,5,6,7,10] });
   }
 });
 router.get('/camera', async (req, res, next) =>{
