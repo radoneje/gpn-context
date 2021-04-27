@@ -18,7 +18,24 @@ html
     body(style="opacity:0")
         .screenWr#app
             .voteWr.ScreenVote(v-if="votes.length>0")
-                include votes
+                .voteBox
+                    .voteItem(v-for="vote in votes" v-if="vote.isactive")
+                        .voteItemTitle {{vote.title}}
+                        .voteItemAnwers(v-if="!vote.iscompl")
+                            .voteItemAnswersItem.hover( v-bind:class="{ready:checkVoteReady(answer)}" v-on:click="voting(answer)" :color="'answer'+i"  v-for="(answer, i) in vote.answers" v-if="answer.title && answer.title.length>0")
+                                .voteItemAnswersItemTitle() {{answer.title}}
+                                .voteItemAnswersItemCheck()
+                            .voteBtnTags.regBtn(v-on:click="votingSend(vote)" v-if="myVote['id'+vote.id] && !checkVoteFull(vote)") Проголосовать
+                            .voteBtnTags.regBtn(v-on:click="" v-if="checkVoteFull(vote)") Ваш выбор прият
+
+                        .voteItemAnwers(v-else)
+                            .voteItemAnswersItem( v-bind:class="{}"  :color="'answer'+i"  v-for="(answer, i) in vote.answers" v-if="answer.title && answer.title.length>0")
+                                .voteItemAnswersItemTitle() {{answer.title}}
+                                .voteItemAnswersItemValueWr
+
+                                    .voteItemAnswersItemValueTitle {{parseInt(answer.perc*100)}}%
+                                .voteItemAnswersItemValueBox
+                                    .voteItemAnswersItemValue(:style="'width:'+parseInt(answer.perc*100)+'%'")
         script(src="/javascripts/vue.min.js")
         script(src="/javascripts/moment.min.js")
         script(src="/javascripts/axios.min.js")
