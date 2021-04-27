@@ -1,3 +1,5 @@
+var userStateTimeout;
+
 var pgm=new Vue({
     el:"#app",
     data:{
@@ -110,7 +112,7 @@ var pgm=new Vue({
             catch (e) {
                 console.warn(e)
             }
-            setTimeout(()=>{this.userState()},10*1000)
+            userStateTimeout=setTimeout(()=>{this.userState()},10*1000)
 
         },
         aliveUser:async function(){
@@ -139,6 +141,8 @@ var pgm=new Vue({
                         setTimeout(function () {
                             objDiv.scrollTop = objDiv.scrollHeight;
                         }, 0)
+                    clearTimeout(userStateTimeout)
+                    userStateTimeout=setTimeout(()=>{this.userState()},10*1000)
                      setTimeout(()=>{this.chatTextSend=false},2000)
                 }
                 else
@@ -164,6 +168,8 @@ var pgm=new Vue({
                             objDiv.scrollTop = objDiv.scrollHeight;
                         }, 0)
                     setTimeout(()=>{this.chatTextSend=false},2000)
+                    clearTimeout(userStateTimeout)
+                    userStateTimeout=setTimeout(()=>{this.userState()},10*1000)
                 }
                 else
                     this.chatTextSend=false
