@@ -48,7 +48,7 @@ router.get('/phoner', async (req, res, next) =>{
 
 });
 router.get('/', async (req, res, next) =>{
-  return res.render('start');
+ // return res.render('start');
   //res.render('work', { title: 'under constaction' });
   res.redirect("/index/ru")
 
