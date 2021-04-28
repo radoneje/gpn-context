@@ -112,7 +112,7 @@ async function clearCounter(){
   var deleted=[];
   var lastCount=counter.length;
   counter.forEach(async (item)=>{
-    var ret=((moment().unix())-item.date)<30
+    var ret=((moment().unix())-item.date)<90
     if(!ret)
       deleted.push(item)
   });
