@@ -48,12 +48,13 @@ router.get('/phoner', async (req, res, next) =>{
 
 });
 router.get('/', async (req, res, next) =>{
- // return res.render('start');
+ return res.render('start');
   //res.render('work', { title: 'under constaction' });
   res.redirect("/index/ru")
 
 });
 router.get('/index/:lang?', async (req, res, next) =>{
+  return res.render('start');
   if(!req.session["user"])
     res.redirect("/login")
   if(!req.params.lang)
@@ -100,7 +101,7 @@ router.get('/badbrowser', async (req, res, next) =>{
   res.render("badbrowser")
 })
 router.get('/test/:lang?', async (req, res, next) =>{
-  //return res.render('start');
+  return res.render('start');
   if(!req.params.lang)
     req.params.lang="ru"
   req.params.lang=req.params.lang.toLowerCase();
