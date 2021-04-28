@@ -71,6 +71,7 @@ router.get('/index/:lang?', async (req, res, next) =>{
 });
 
 
+
 router.get('/login/:lang?', async (req, res, next) =>{
   //return res.render('start');
   req.session["user"]=null;
